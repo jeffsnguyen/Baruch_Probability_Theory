@@ -478,6 +478,38 @@ We have the outcomes where two boxes are empty: <span class="math display">\[\be
   \end{aligned}
 \end{equation}\]</span></p>
 </div>
+<div id="question-3" class="section level1">
+<h1><strong>Question 3</strong></h1>
+<p>Proving: <span class="math display">\[\begin{equation}
+  \begin{aligned}
+    P\left[ \bigcap\limits_{i=1}^n A_i \right] &amp; \geqslant \sum_{i=1}^n P (A_i) - (n-1)  \\
+    - P\left[ \bigcap\limits_{i=1}^n A_i \right] &amp; \leqslant - \sum_{i=1}^n P (A_i) + (n-1) \\
+    1 - P\left[ \bigcap\limits_{i=1}^n A_i \right] &amp; \leqslant n - \sum_{i=1}^n P (A_i) \\
+    P\left[ \left( \bigcap\limits_{i=1}^n A_i \right)^c \right] &amp; \leqslant \sum_{i=1}^n [1 - P(A_i)] \\
+    P\left[ \left( \bigcap\limits_{i=1}^n A_i \right)^c \right] &amp; \leqslant \sum_{i=1}^n [P(A_i^c)] \quad \text{(1)} \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>From De Morgan’s Laws discussed in class, we have: <span class="math inline">\(A^c \cap B^c = (A \cup B)^c\)</span>. This leads to a generalized case of <span class="math inline">\(\left( \bigcap\limits_{i=1}^n A_i \right)^c = \bigcup\limits_{i=1}^n A_i^c \quad \text{(2)}\)</span>.</p>
+<p>Plug <span class="math inline">\(\text{(2)}\)</span> into <span class="math inline">\(\text{(1)}\)</span> we see that we need to prove:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    P\left[ \bigcup\limits_{i=1}^n A_i^c \right] &amp; \leqslant \sum_{i=1}^n [P(A_i^c)] \text{(3)}  \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>Proving <span class="math inline">\(\text{(3)}\)</span> by induction:<br />
+Assume that <span class="math inline">\(\text{(3)}\)</span> is true with <span class="math inline">\(n=k\)</span>, we will prove it to be also true with <span class="math inline">\(n=k+1\)</span>:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    \text{Using the inclusion-exclusion proinciple:} \\
+    P\left[ \bigcup\limits_{i=1}^{k+1} A_i^c \right] &amp; =  P\left[ \bigcup\limits_{i=1}^{k} A_i^c \cup A_{k+1}^c \right] \\
+    &amp; =  P\left[ \bigcup\limits_{i=1}^{k} A_i^c \right] + P(A_{k+1}^c) - P\left[ \bigcup\limits_{i=1}^{k} A_i^c \cap A_{k+1}^c \right]  \\
+    &amp; \leqslant P\left[ \bigcup\limits_{i=1}^{k} A_i^c \right] + P(A_{k+1}^c) \\
+    &amp; \leqslant \sum_{i=1}^k P(A_i^c) + P(A_{k+1}^c) \quad \text{(finite additivity of probability measure)} \\
+    &amp; \leqslant \sum_{i=1}^{k+1} P(A_i^c)
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>Thus, <span class="math inline">\(\text{(3)}\)</span> is proven to be true.</p>
+</div>
 
 
 

@@ -131,3 +131,44 @@ Therefore:
                   & = \frac{1}{3} \\
   \end{aligned}
 \end{equation}
+
+# **Question 3**  
+Proving:
+\begin{equation}
+  \begin{aligned}
+    P\left[ \bigcap\limits_{i=1}^n A_i \right] & \geqslant \sum_{i=1}^n P (A_i) - (n-1)  \\
+    - P\left[ \bigcap\limits_{i=1}^n A_i \right] & \leqslant - \sum_{i=1}^n P (A_i) + (n-1) \\
+    1 - P\left[ \bigcap\limits_{i=1}^n A_i \right] & \leqslant n - \sum_{i=1}^n P (A_i) \\
+    P\left[ \left( \bigcap\limits_{i=1}^n A_i \right)^c \right] & \leqslant \sum_{i=1}^n [1 - P(A_i)] \\
+    P\left[ \left( \bigcap\limits_{i=1}^n A_i \right)^c \right] & \leqslant \sum_{i=1}^n [P(A_i^c)] \quad \text{(1)} \\
+  \end{aligned}
+\end{equation}
+
+From De Morgan's Laws discussed in class, we have: $A^c \cap B^c = (A \cup B)^c$. This leads to a generalized case of $\left( \bigcap\limits_{i=1}^n A_i \right)^c = \bigcup\limits_{i=1}^n A_i^c \quad \text{(2)}$.
+
+Plug $\text{(2)}$ into $\text{(1)}$ we see that we need to prove:  
+
+\begin{equation}
+  \begin{aligned}
+    P\left[ \bigcup\limits_{i=1}^n A_i^c \right] & \leqslant \sum_{i=1}^n [P(A_i^c)] \text{(3)}  \\
+  \end{aligned}
+\end{equation}
+
+Proving $\text{(3)}$ by induction:  
+Assume that $\text{(3)}$ is true with $n=k$, we will prove it to be also true with $n=k+1$:  
+
+\begin{equation}
+  \begin{aligned}
+    \text{Using the inclusion-exclusion proinciple:} \\
+    P\left[ \bigcup\limits_{i=1}^{k+1} A_i^c \right] & =  P\left[ \bigcup\limits_{i=1}^{k} A_i^c \cup A_{k+1}^c \right] \\
+    & =  P\left[ \bigcup\limits_{i=1}^{k} A_i^c \right] + P(A_{k+1}^c) - P\left[ \bigcup\limits_{i=1}^{k} A_i^c \cap A_{k+1}^c \right]  \\
+    & \leqslant P\left[ \bigcup\limits_{i=1}^{k} A_i^c \right] + P(A_{k+1}^c) \\
+    & \leqslant \sum_{i=1}^k P(A_i^c) + P(A_{k+1}^c) \quad \text{(finite additivity of probability measure)} \\
+    & \leqslant \sum_{i=1}^{k+1} P(A_i^c)
+  \end{aligned}
+\end{equation}
+
+Thus, $\text{(3)}$ is proven to be true.  
+Therefore, the original inequality is also proven to be true.  
+
+# **Question 4**  
