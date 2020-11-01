@@ -58,6 +58,8 @@ Thus, we have the sample space as follow:
   \end{aligned}
 \end{equation}
 
+We are not listing all combinations because only the combinations with at least one empty box is of our interests for the purpose of this question.  
+
 Based on combinatorial counting methods, we know the number of sequences of length $5$ with $3$ symbols is $n^k = 3^5 = 243$. Thus there are $243$ outcomes in the set $\Omega$.  
 
 ## (a) box I remains empty  
@@ -84,7 +86,7 @@ We have the outcomes where two boxes are empty:
   \end{aligned}
 \end{equation}
 
-We can count 3 outcomes in $\Omega \backslash A_2$, thus $P(A_2) = \frac{\lvert \Omega \rvert - \lvert \Omega \backslash A_2 \rvert}{\lvert \Omega \rvert} = \frac{243-3}{243} \approx ..98765432 \approx 98.7654 \%$  
+We can count 3 outcomes in $\Omega \backslash A_2$, thus $P(A_2) = \frac{\lvert \Omega \rvert - \lvert \Omega \backslash A_2 \rvert}{\lvert \Omega \rvert} = \frac{243-3}{243} = \frac{80}{81} \approx ..98765432 \approx 98.7654 \%$  
 
 ## (a) box I and II remains empty  
 The subset of outcomes where box I remains empty is:  
@@ -97,3 +99,35 @@ The subset of outcomes where box I remains empty is:
 We can count 1 outcomes in $A_3$, thus $P(A_3) = \frac{\lvert A_3 \rvert}{\lvert \Omega \rvert} = \frac{1}{243} \approx 4.115226337e^{-3} \approx 0.4115 \%$  
 
 # **Question 2**  
+
+We have the sample space as follow:  
+\begin{equation}
+  \begin{aligned}
+    \Omega = \{{W, W, W, W, W, W, W, W, W, W, \\ 
+                Y, Y, Y, Y, Y,  \\
+                B, B, B, B, B, B, B, B, B, B\}}
+  \end{aligned}
+\end{equation}
+
+We are looking for $P(Y \mid B^c) = \frac{P(Y \cap B^c)}{P(B^c)}$, based on the definition of conditional probability.  
+
+We have:  
+\begin{equation}
+  \begin{aligned}
+    B^c & = \{{W, W, W, W, W, W, W, W, W, W, \\ 
+               Y, Y, Y, Y, Y \}} \\
+    \text{thus} \\
+    Y \cap B^c & = \{{Y, Y, Y, Y, Y \}}
+  \end{aligned}
+\end{equation}
+
+Therefore: 
+\begin{equation}
+  \begin{aligned}
+    P(Y \mid B^c) & = \frac{P(Y \cap B^c)}{P(B^c)}  \\
+                  & = \frac{\frac{\lvert Y \cap B^c \rvert}{\lvert \Omega \rvert}}
+                      {\frac{\lvert B^c \rvert}{\lvert \Omega \rvert}} \\
+                  & = \frac{\frac{5}{25}}{\frac{15}{25}} \\
+                  & = \frac{1}{3} \\
+  \end{aligned}
+\end{equation}
