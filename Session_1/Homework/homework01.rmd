@@ -22,13 +22,13 @@ Student Name: Ngoc Son (Jeff) Nguyen
 # **Question 1**  
 
 The sample space $\Omega$ is designed as follow:  
-&nbsp; 1. It is a set of tuples of 3, each tuple represent an outcome.  
-&nbsp; 2. Each tuples contains 3 ordered elements, each elements represent a box in the order of 1, 2 and 3.  
-&nbsp; 3. Either of the tuple elements can be an empty list [], representing an empty box.  
-&nbsp; 4. Otherwise, each tuple element draws from the list $L = [1, 2, 3, 4, 5]$ representing the numbered balls.  
-&nbsp; 5. Beside [], each tuple element is an ordered list of number from $L$ with the total number of list elements ranging from 1 to 5, representing 1 to 5 &nbsp;&nbsp; ball(s) in each box.  
-&nbsp; 6. The outcome set is a combination of: (0,0,5), (0,1,4), (0,2,3), (0,3,2), (0,4,1), (1,1,4), (1,2,3), (1,3,2), (1,4,1), (2,1,2), (2,2,1), (3,1,1), each &nbsp;&nbsp; tuple representing a way to put 5 balls in each box.  
-&nbsp; 7. Note that the order of the balls inside each box--tuple element--does not matter, i.e. ([],[],[1,2,3,4,5]) is the same as ([],[],[2,1,4,3,5]).  
+&nbsp;&nbsp; 1. It is a set of tuples of 3, each tuple represent an outcome.  
+&nbsp;&nbsp; 2. Each tuples contains 3 ordered elements, each elements represent a box in the order of 1, 2 and 3.  
+&nbsp;&nbsp; 3. Either of the tuple elements can be an empty list [], representing an empty box.  
+&nbsp;&nbsp; 4. Otherwise, each tuple element draws from the list $L = [1, 2, 3, 4, 5]$ representing the numbered balls.  
+&nbsp;&nbsp; 5. Beside [], each tuple element is an ordered list of number from $L$ with the total number of list elements ranging from 1 to 5, representing 1 to 5 &nbsp;&nbsp; ball(s) in each box.  
+&nbsp;&nbsp; 6. The outcome set is a combination of: (0,0,5), (0,1,4), (0,2,3), (0,3,2), (0,4,1), (1,1,4), (1,2,3), (1,3,2), (1,4,1), (2,1,2), (2,2,1), (3,1,1), each &nbsp;&nbsp; tuple representing a way to put 5 balls in each box.  
+&nbsp;&nbsp; 7. Note that the order of the balls inside each box--tuple element--does not matter, i.e. ([],[],[1,2,3,4,5]) is the same as ([],[],[2,1,4,3,5]).  
 
 Thus, we have the sample space as follow:  
 \begin{equation}
@@ -172,3 +172,93 @@ Thus, $\text{(3)}$ is proven to be true.
 Therefore, the original inequality is also proven to be true.  
 
 # **Question 4**  
+The sample space $\Omega$ consists of the following outcomes $\Omega = \{ 110, 101, 011, 000\}$ and the corresponded events as designed in the problem are $A_1 = \{ 110, 101 \}$, $A_2 = \{ 110, 011 \}$, $A_3 = \{ 101, 011 \}$. Making the assumption that the numbered balls are otherwise identical, i.e., the probabilities of drawing any ball out of the urn are equal, we have $P(A_1) = P(A_2) = P(A_3) = \frac{2}{4} = \frac{1}{2}$.  
+
+In addition: $A_1 \cap A_2 = \{ 110 \}$, $A_2 \cap A_3 = \{ 011 \}$, $A_3 \cap A_1 = \{ 101 \}$ and $A_1 \cap A_2 \cap A_3 = \emptyset$.  
+Thus: $P(A_1 \cap A_2) = P(A_2 \cap A_3) = P(A_3 \cap A_1) = \frac{1}{4}$,  
+while $P(A_1 \cap A_2 \cap A_3) = \frac{0}{4} = 0$.  
+
+We can clearly see that A_k events are clearly pairwise independent:  
+\begin{equation}
+  \begin{aligned}
+    P(A_1 \cap A_2) & = P(A_1) * P(A_2) = \frac{1}{4} = \frac{1}{2}*\frac{1}{2}  \\
+    P(A_2 \cap A_3) & = P(A_2) * P(A_3) = \frac{1}{4} = \frac{1}{2}*\frac{1}{2}  \\
+    P(A_3 \cap A_1) & = P(A_3) * P(A_1) = \frac{1}{4} = \frac{1}{2}*\frac{1}{2}  \\
+  \end{aligned}
+\end{equation}
+
+But they are not independent:  
+\begin{equation}
+  \begin{aligned}
+    P(A_1 \cap A_2 \cap A_3) = 0 & \neq \frac{1}{8} = P(A_1) * P(A_2) * P(A_3)  \\
+  \end{aligned}
+\end{equation}  
+
+# **Question 5**  
+The main experiment $C_i$ essentially has 2 ordered sub experiments:  
+&nbsp;&nbsp; $(1) A_i$ Drawing 2000 balls from container A at random.  
+&nbsp;&nbsp; $(2) B_i$ Draw 1 ball from container B (now has $4000 + 2000 = 6000$ balls). The number of red and green balls in container B is dependent on experiment 1.  
+
+Let k be the number of red balls being drawn in $(1)$. Because there are only 1000 green balls in container A, the minimum number of red balls to be drawn is $k=1000$. Thus:  
+
+At $k = 1000$:  
+We are drawing 1000 green balls and 1000 red balls from container A. We denote this with the ordered tuple $(1000,1000)$ representing (# of green balls, # of red balls). With this outcome of $(1)$, the experiment $(2)$ now becomes drawing 1 balls from 3000 green balls and 3000 red balls from container B. We can see the probability of drawing a green ball from $(2)$ is now quite simple: $P(B) = \frac{4000}{6000}$. We can generalize this number by $P(B_i) = \frac{5000-k}{6000}$
+
+Also note that the events $B_i$ in $(2)$ is dependent on the outcome of the events $A_i$ in $(1)$. So the problem now becomes finding $P(A_i)$, i.e. finding the probability of drawing $k = 1000$ red balls from container A. This problem is picking without replacement, i.e. we are not putting the ball back after the draw. We are looking for the probability that we pick exactly 1000 red balls and 1000 green balls, order doesn't matter.  
+
+Note that there are $4000 \choose 2000$ ways to draw any 2000 balls out of 4000 balls in A.  
+Also note that there are $1000 \choose 1000$ ways to draw 1000 green balls out of 1000 green balls and $3000 \choose 1000$ ways to draw 1000 red balls out of 3000 red balls. Thus, the probability of drawing exactly 1000 red balls and exactly 1000 green balls , order doesn't matter, is $\frac{{1000 \choose 1000} * {3000 \choose 1000}} {4000 \choose 2000}$. We can generalize this number by $P(A_i) = \frac{{1000 \choose 2000-k} * {3000 \choose k}} {4000 \choose 2000}$ with $k$ being the number of red balls drawn from container A in experiment $(1)$.  
+
+We have, then:  
+\begin{equation}
+  \begin{aligned}
+    k & = 1000:  \quad P(C_{1}) = P(A_1) * P(B_1) = \frac{{1000 \choose 1000} * {3000 \choose 1000}} {4000 \choose 2000} * \frac{4000}{6000} \\
+    k & = 1001:  \quad P(C_{2}) = P(A_2) * P(B_2) = \frac{{1000 \choose 999} * {3000 \choose 1001}} {4000 \choose 2000} * \frac{3999}{6000} \\
+    k & = 1002:  \quad P(C_{3}) = P(A_3) * P(B_3) = \frac{{1000 \choose 998} * {3000 \choose 1002}} {4000 \choose 2000} * \frac{3998}{6000} \\
+    ...  \\
+    k & = 2000:  \quad P(C_{1001}) = P(A_{1001}) * P(B_{1001}) = \frac{{1000 \choose 0} * {3000 \choose 2000}} {4000 \choose 2000} * \frac{3000}{6000} \\
+    ... \\
+    k & = n:  \quad P(C_{n-999}) = P(A_{n-999}) * P(B_{n-999}) = \frac{{1000 \choose 2000-n} * {3000 \choose n}} {4000 \choose 2000} * \frac{5000-n}{6000} \\
+  \end{aligned}
+\end{equation}   
+
+Since $A_i$ and $B_i$ are separate event of different sub-experiments, we have $A_i \cap B_i = \emptyset$.  
+Thus, based on the principle of inclusion and exclusion:  
+
+\begin{equation}
+  \begin{aligned}
+    P &= P \left[ \bigcup\limits_{i=1}^{1001} C_i \right] = \sum_{k=1000}^{2000} \left[ \frac{{1000 \choose 2000-k} * {3000 \choose k}} {4000 \choose 2000} * \frac{5000-k}{6000} \right]  \\
+  \end{aligned}
+\end{equation} 
+
+I don't know how to simplify the above so I wrote a simple Python program to do approximation.
+
+```{python}
+def factorial(x):
+    i = 1
+    fac = 1
+    if x == 0:
+        return 1
+    else:
+        while i <= x:
+            fac = fac*i
+            i += 1
+    return fac
+
+
+def n_choose_k(n,k):
+    return factorial(n) // (factorial(k) * factorial(n-k))
+
+
+def main():
+    k = 1000
+    sum = 0
+    while k <= 2000:
+        sum += ((n_choose_k(1000, 2000-k))*(n_choose_k(3000, k))/(n_choose_k(4000,2000))) * ((5000-k)/6000)
+        k += 1
+    print(f'The result is {sum}')
+    
+#######################
+if __name__ == '__main__':
+    main()
+```

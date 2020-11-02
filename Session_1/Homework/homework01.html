@@ -376,13 +376,13 @@ Student Name: Ngoc Son (Jeff) Nguyen</p>
 <div id="question-1" class="section level1">
 <h1><strong>Question 1</strong></h1>
 <p>The sample space <span class="math inline">\(\Omega\)</span> is designed as follow:<br />
-  1. It is a set of tuples of 3, each tuple represent an outcome.<br />
-  2. Each tuples contains 3 ordered elements, each elements represent a box in the order of 1, 2 and 3.<br />
-  3. Either of the tuple elements can be an empty list [], representing an empty box.<br />
-  4. Otherwise, each tuple element draws from the list <span class="math inline">\(L = [1, 2, 3, 4, 5]\)</span> representing the numbered balls.<br />
-  5. Beside [], each tuple element is an ordered list of number from <span class="math inline">\(L\)</span> with the total number of list elements ranging from 1 to 5, representing 1 to 5    ball(s) in each box.<br />
-  6. The outcome set is a combination of: (0,0,5), (0,1,4), (0,2,3), (0,3,2), (0,4,1), (1,1,4), (1,2,3), (1,3,2), (1,4,1), (2,1,2), (2,2,1), (3,1,1), each    tuple representing a way to put 5 balls in each box.<br />
-  7. Note that the order of the balls inside each box–tuple element–does not matter, i.e. ([],[],[1,2,3,4,5]) is the same as ([],[],[2,1,4,3,5]).</p>
+   1. It is a set of tuples of 3, each tuple represent an outcome.<br />
+   2. Each tuples contains 3 ordered elements, each elements represent a box in the order of 1, 2 and 3.<br />
+   3. Either of the tuple elements can be an empty list [], representing an empty box.<br />
+   4. Otherwise, each tuple element draws from the list <span class="math inline">\(L = [1, 2, 3, 4, 5]\)</span> representing the numbered balls.<br />
+   5. Beside [], each tuple element is an ordered list of number from <span class="math inline">\(L\)</span> with the total number of list elements ranging from 1 to 5, representing 1 to 5    ball(s) in each box.<br />
+   6. The outcome set is a combination of: (0,0,5), (0,1,4), (0,2,3), (0,3,2), (0,4,1), (1,1,4), (1,2,3), (1,3,2), (1,4,1), (2,1,2), (2,2,1), (3,1,1), each    tuple representing a way to put 5 balls in each box.<br />
+   7. Note that the order of the balls inside each box–tuple element–does not matter, i.e. ([],[],[1,2,3,4,5]) is the same as ([],[],[2,1,4,3,5]).</p>
 <p>Thus, we have the sample space as follow:<br />
 <span class="math display">\[\begin{equation}
   \begin{aligned}
@@ -508,7 +508,89 @@ Assume that <span class="math inline">\(\text{(3)}\)</span> is true with <span c
     &amp; \leqslant \sum_{i=1}^{k+1} P(A_i^c)
   \end{aligned}
 \end{equation}\]</span></p>
-<p>Thus, <span class="math inline">\(\text{(3)}\)</span> is proven to be true.</p>
+<p>Thus, <span class="math inline">\(\text{(3)}\)</span> is proven to be true.<br />
+Therefore, the original inequality is also proven to be true.</p>
+</div>
+<div id="question-4" class="section level1">
+<h1><strong>Question 4</strong></h1>
+<p>The sample space <span class="math inline">\(\Omega\)</span> consists of the following outcomes <span class="math inline">\(\Omega = \{ 110, 101, 011, 000\}\)</span> and the corresponded events as designed in the problem are <span class="math inline">\(A_1 = \{ 110, 101 \}\)</span>, <span class="math inline">\(A_2 = \{ 110, 011 \}\)</span>, <span class="math inline">\(A_3 = \{ 101, 011 \}\)</span>. Making the assumption that the numbered balls are otherwise identical, i.e., the probabilities of drawing any ball out of the urn are equal, we have <span class="math inline">\(P(A_1) = P(A_2) = P(A_3) = \frac{2}{4} = \frac{1}{2}\)</span>.</p>
+<p>In addition: <span class="math inline">\(A_1 \cap A_2 = \{ 110 \}\)</span>, <span class="math inline">\(A_2 \cap A_3 = \{ 011 \}\)</span>, <span class="math inline">\(A_3 \cap A_1 = \{ 101 \}\)</span> and <span class="math inline">\(A_1 \cap A_2 \cap A_3 = \emptyset\)</span>.<br />
+Thus: <span class="math inline">\(P(A_1 \cap A_2) = P(A_2 \cap A_3) = P(A_3 \cap A_1) = \frac{1}{4}\)</span>,<br />
+while <span class="math inline">\(P(A_1 \cap A_2 \cap A_3) = \frac{0}{4} = 0\)</span>.</p>
+<p>We can clearly see that A_k events are clearly pairwise independent:<br />
+<span class="math display">\[\begin{equation}
+  \begin{aligned}
+    P(A_1 \cap A_2) &amp; = P(A_1) * P(A_2) = \frac{1}{4} = \frac{1}{2}*\frac{1}{2}  \\
+    P(A_2 \cap A_3) &amp; = P(A_2) * P(A_3) = \frac{1}{4} = \frac{1}{2}*\frac{1}{2}  \\
+    P(A_3 \cap A_1) &amp; = P(A_3) * P(A_1) = \frac{1}{4} = \frac{1}{2}*\frac{1}{2}  \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>But they are not independent:<br />
+<span class="math display">\[\begin{equation}
+  \begin{aligned}
+    P(A_1 \cap A_2 \cap A_3) = 0 &amp; \neq \frac{1}{8} = P(A_1) * P(A_2) * P(A_3)  \\
+  \end{aligned}
+\end{equation}\]</span></p>
+</div>
+<div id="question-5" class="section level1">
+<h1><strong>Question 5</strong></h1>
+<p>The main experiment <span class="math inline">\(C_i\)</span> essentially has 2 ordered sub experiments:<br />
+   <span class="math inline">\((1) A_i\)</span> Drawing 2000 balls from container A at random.<br />
+   <span class="math inline">\((2) B_i\)</span> Draw 1 ball from container B (now has <span class="math inline">\(4000 + 2000 = 6000\)</span> balls). The number of red and green balls in container B is dependent on experiment 1.</p>
+<p>Let k be the number of red balls being drawn in <span class="math inline">\((1)\)</span>. Because there are only 1000 green balls in container A, the minimum number of red balls to be drawn is <span class="math inline">\(k=1000\)</span>. Thus:</p>
+<p>At <span class="math inline">\(k = 1000\)</span>:<br />
+We are drawing 1000 green balls and 1000 red balls from container A. We denote this with the ordered tuple <span class="math inline">\((1000,1000)\)</span> representing (# of green balls, # of red balls). With this outcome of <span class="math inline">\((1)\)</span>, the experiment <span class="math inline">\((2)\)</span> now becomes drawing 1 balls from 3000 green balls and 3000 red balls from container B. We can see the probability of drawing a green ball from <span class="math inline">\((2)\)</span> is now quite simple: <span class="math inline">\(P(B) = \frac{4000}{6000}\)</span>. We can generalize this number by <span class="math inline">\(P(B_i) = \frac{5000-k}{6000}\)</span></p>
+<p>Also note that the events <span class="math inline">\(B_i\)</span> in <span class="math inline">\((2)\)</span> is dependent on the outcome of the events <span class="math inline">\(A_i\)</span> in <span class="math inline">\((1)\)</span>. So the problem now becomes finding <span class="math inline">\(P(A_i)\)</span>, i.e. finding the probability of drawing <span class="math inline">\(k = 1000\)</span> red balls from container A. This problem is picking without replacement, i.e. we are not putting the ball back after the draw. We are looking for the probability that we pick exactly 1000 red balls and 1000 green balls, order doesn’t matter.</p>
+<p>Note that there are <span class="math inline">\(4000 \choose 2000\)</span> ways to draw any 2000 balls out of 4000 balls in A.<br />
+Also note that there are <span class="math inline">\(1000 \choose 1000\)</span> ways to draw 1000 green balls out of 1000 green balls and <span class="math inline">\(3000 \choose 1000\)</span> ways to draw 1000 red balls out of 3000 red balls. Thus, the probability of drawing exactly 1000 red balls and exactly 1000 green balls , order doesn’t matter, is <span class="math inline">\(\frac{{1000 \choose 1000} * {3000 \choose 1000}} {4000 \choose 2000}\)</span>. We can generalize this number by <span class="math inline">\(P(A_i) = \frac{{1000 \choose 2000-k} * {3000 \choose k}} {4000 \choose 2000}\)</span> with <span class="math inline">\(k\)</span> being the number of red balls drawn from container A in experiment <span class="math inline">\((1)\)</span>.</p>
+<p>We have, then:<br />
+<span class="math display">\[\begin{equation}
+  \begin{aligned}
+    k &amp; = 1000:  \quad P(C_{1}) = P(A_1) * P(B_1) = \frac{{1000 \choose 1000} * {3000 \choose 1000}} {4000 \choose 2000} * \frac{4000}{6000} \\
+    k &amp; = 1001:  \quad P(C_{2}) = P(A_2) * P(B_2) = \frac{{1000 \choose 999} * {3000 \choose 1001}} {4000 \choose 2000} * \frac{3999}{6000} \\
+    k &amp; = 1002:  \quad P(C_{3}) = P(A_3) * P(B_3) = \frac{{1000 \choose 998} * {3000 \choose 1002}} {4000 \choose 2000} * \frac{3998}{6000} \\
+    ...  \\
+    k &amp; = 2000:  \quad P(C_{1001}) = P(A_{1001}) * P(B_{1001}) = \frac{{1000 \choose 0} * {3000 \choose 2000}} {4000 \choose 2000} * \frac{3000}{6000} \\
+    ... \\
+    k &amp; = n:  \quad P(C_{n-999}) = P(A_{n-999}) * P(B_{n-999}) = \frac{{1000 \choose 2000-n} * {3000 \choose n}} {4000 \choose 2000} * \frac{5000-n}{6000} \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>Since <span class="math inline">\(A_i\)</span> and <span class="math inline">\(B_i\)</span> are separate event of different sub-experiments, we have <span class="math inline">\(A_i \cap B_i = \emptyset\)</span>.<br />
+Thus, based on the principle of inclusion and exclusion:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    P &amp;= P \left[ \bigcup\limits_{i=1}^{1001} C_i \right] = \sum_{k=1000}^{2000} \left[ \frac{{1000 \choose 2000-k} * {3000 \choose k}} {4000 \choose 2000} * \frac{5000-k}{6000} \right]  \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>I don’t know how to simplify the above so I wrote a simple Python program to do approximation.</p>
+<pre class="python"><code>def factorial(x):
+    i = 1
+    fac = 1
+    if x == 0:
+        return 1
+    else:
+        while i &lt;= x:
+            fac = fac*i
+            i += 1
+    return fac
+
+
+def n_choose_k(n,k):
+    return factorial(n) // (factorial(k) * factorial(n-k))
+
+
+def main():
+    k = 1000
+    sum = 0
+    while k &lt;= 2000:
+        sum += ((n_choose_k(1000, 2000-k))*(n_choose_k(3000, k))/(n_choose_k(4000,2000))) * ((5000-k)/6000)
+        k += 1
+    print(f&#39;The result is {sum}&#39;)
+    
+#######################
+if __name__ == &#39;__main__&#39;:
+    main()</code></pre>
+<pre><code>## The result is 0.5833333333333337</code></pre>
 </div>
 
 
