@@ -493,7 +493,7 @@ We have the outcomes where two boxes are empty: <span class="math display">\[\be
 <p>Plug <span class="math inline">\(\text{(2)}\)</span> into <span class="math inline">\(\text{(1)}\)</span> we see that we need to prove:</p>
 <p><span class="math display">\[\begin{equation}
   \begin{aligned}
-    P\left[ \bigcup\limits_{i=1}^n A_i^c \right] &amp; \leqslant \sum_{i=1}^n [P(A_i^c)] \text{(3)}  \\
+    P\left[ \bigcup\limits_{i=1}^n A_i^c \right] &amp; \leqslant \sum_{i=1}^n [P(A_i^c)] \quad \text{(3)}  \\
   \end{aligned}
 \end{equation}\]</span></p>
 <p>Proving <span class="math inline">\(\text{(3)}\)</span> by induction:<br />
@@ -563,7 +563,8 @@ Thus, based on the principle of inclusion and exclusion:</p>
   \end{aligned}
 \end{equation}\]</span></p>
 <p>I don’t know how to simplify the above so I wrote a simple Python program to do approximation.</p>
-<pre class="python"><code>def factorial(x):
+<pre class="python"><code># Find factorial
+def factorial(x):
     i = 1
     fac = 1
     if x == 0:
@@ -574,7 +575,8 @@ Thus, based on the principle of inclusion and exclusion:</p>
             i += 1
     return fac
 
-
+# Find n choose k
+# Return a floor integer value instead of float to circumvent overflow issues with large number factorial
 def n_choose_k(n,k):
     return factorial(n) // (factorial(k) * factorial(n-k))
 

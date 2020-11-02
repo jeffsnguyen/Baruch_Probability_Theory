@@ -150,7 +150,7 @@ Plug $\text{(2)}$ into $\text{(1)}$ we see that we need to prove:
 
 \begin{equation}
   \begin{aligned}
-    P\left[ \bigcup\limits_{i=1}^n A_i^c \right] & \leqslant \sum_{i=1}^n [P(A_i^c)] \text{(3)}  \\
+    P\left[ \bigcup\limits_{i=1}^n A_i^c \right] & \leqslant \sum_{i=1}^n [P(A_i^c)] \quad \text{(3)}  \\
   \end{aligned}
 \end{equation}
 
@@ -234,6 +234,7 @@ Thus, based on the principle of inclusion and exclusion:
 I don't know how to simplify the above so I wrote a simple Python program to do approximation.
 
 ```{python}
+# Find factorial
 def factorial(x):
     i = 1
     fac = 1
@@ -245,7 +246,8 @@ def factorial(x):
             i += 1
     return fac
 
-
+# Find n choose k
+# Return a floor integer value instead of float to circumvent overflow issues with large number factorial
 def n_choose_k(n,k):
     return factorial(n) // (factorial(k) * factorial(n-k))
 
