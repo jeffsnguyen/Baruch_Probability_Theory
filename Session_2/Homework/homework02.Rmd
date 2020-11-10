@@ -1,0 +1,235 @@
+---
+title: "Homework2"
+author: "Jeff Nguyen"
+date: "06/11/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, envir=.GlobalEnv)
+```
+
+**Pre-MFE Probability Seminar**  
+**Baruch College, Fall 2020**  
+
+
+Homework 02  
+Student Name: Ngoc Son (Jeff) Nguyen  
+
+
+# **Question 1**  
+Because X, Y are independent random variables:  
+\begin{equation}
+  \begin{aligned}
+    P(Y > 11 \mid X > 12) & = P(Y > 11) = \frac{15}{22}  \\
+  \end{aligned}
+\end{equation}
+  
+Thus, based on the property of distribution function of a random variable:  
+\begin{equation}
+  \begin{aligned}
+    P(Y \leqslant 11) & = 1 - P(Y > 11)  \\
+                      & = 1 - \frac{15}{22}  \\
+                      & = \frac{7}{22}  \\
+  \end{aligned}
+\end{equation}
+  
+Furthermore, based on the definition of the cumulative distribution fucntion of Y, we have:  
+\begin{equation}
+  \begin{aligned}
+    P(Y \leqslant 11) & = \sum_{y_0 < y} P(Y = y_0)  \\
+    \text{or in this case:}  \\
+    \frac{7}{22} & = P(Y = 10) + P(Y = 11)  \\
+                 & = P(Y = 10) + \frac{2}{11}  \\
+    \Rightarrow P(Y = 10) & = \frac{7}{22} - \frac{2}{11}  \\
+                          & = \frac{3}{22}
+  \end{aligned}
+\end{equation}
+
+With the given set $\omega = \{10, 11, 12, ..., 110\}$, we have $P(X + Y = 20) = P(\{\omega: X(\omega) + Y(\omega) =20\})$.  
+We can see that the only possible scenario for $\{\omega: X(\omega) + Y(\omega) =20\}$ is $\omega: \{X(\omega) = 10, Y(\omega) = 10\}$.  
+Thus:
+
+\begin{equation}
+  \begin{aligned}
+    P(X + Y = 20) & = P(X = 10, Y = 10)  \\
+                  & = P(X = 10) * P(Y = 10)  \quad  \text{(Properties of independence random variables)}  \\
+                  & = \frac{3}{11} * \frac{3}{22}  \\
+                  & = \frac{9}{242}  \\
+    \text{Therefore, we have the result we are looking for:}  \\
+    242 * P(X + Y = 20) & = 242 * \frac{9}{242}  \\
+                        & = 9
+  \end{aligned}
+\end{equation}
+
+# **Question 2**  
+## (a) Sketch the graph of F and show that F is the cdf for a discrete random variable.  
+```{r}
+# R plotting of the given cdf function
+x <- c(-3, 6)
+y <- 0*x
+plot(x, y, xlab="x", ylab="cdf(x)", type="n", main="cdf(x)")
+par(new=TRUE)
+
+points(1, 0, pch=21, col="red")
+segments(x0=-3, y0=0, x1=1, y1=0, col="red")
+
+points(1, 1/10, pch=21, lwd=4, col="red")
+segments(x0=1, y0=1/10, x1=3/2, y1=1/10, col="red")
+points(3/2, 1/10, pch=21, col="red")
+
+points(3/2, 3/10, pch=21, lwd=4, col="red")
+segments(x0=3/2, y0=3/10, x1=2, y1=3/10, col="red")
+points(2, 3/10, pch=21, col="red")
+
+points(2, 6/10, pch=21, lwd=4, col="red")
+segments(x0=2, y0=6/10, x1=5/2, y1=6/10, col="red")
+points(5/2, 6/10, pch=21, col="red")
+
+points(5/2, 9/10, pch=21, lwd=4, col="red")
+segments(x0=5/2, y0=9/10, x1=3, y1=9/10, col="red")
+points(3, 9/10, pch=21, col="red")
+
+points(3, 1, pch=21, lwd=4, col="red")
+segments(x0=3, y0=1, x1=6, y1=1, col="red")
+```  
+  
+We can see that $F_X(x)$ is a cumulative distribution function of a discrete random variable $X$ as $F_X(x)$ is defined for every $x$ and its graph is mostly flat, except jumps. It jumps at the points in the support of $X$. We can clearly see $F_X(x)$ is a step-function with left-closed and right-open intervals, denoted by the filled red circles and un-filled red circles on the graph, respectively.  
+
+## (b) Find the corresponding pmf f and sketch the graph.  
+
+
+x              | $F_X(x)$        | $p_X(x)$
+---            | ---             | ---  
+$0$            | $0$             | 
+$1$            | $\frac{1}{10}$  | $F_X(1) - F_X(1-) = \frac{1}{10} - 0 = \frac{1}{10}$
+$\frac{3}{2}$  | $\frac{3}{10}$  | $F_X(\frac{3}{2}) - F_X(\frac{3}{2}-) = \frac{3}{10} - \frac{1}{10} = \frac{1}{5}$
+$2$            | $\frac{6}{10}$  | $F_X(2) - F_X(2-) = \frac{6}{10} - \frac{3}{10} = \frac{3}{10}$
+$\frac{5}{2}$  | $\frac{9}{10}$  | $F_X(\frac{5}{2}) - F_X(\frac{5}{2}-) = \frac{9}{10} - \frac{6}{10} = \frac{3}{10}$
+$3$            | $1$             | $F_X(3) - F_X(3-) = 1 - \frac{9}{10} = \frac{1}{10}$
+  
+```{r}
+# R plotting of the pmf function
+x <- c(9/10, 4)
+y <- 0*x
+plot(x, y, xlab="x", ylab="pmf(x)", type="n", main="pmf(x)")
+par(new=TRUE)
+
+points(1, 1/10, pch=21, lwd=4, col="blue")
+
+points(3/2, 2/10, pch=21, lwd=4, col="blue")
+
+points(2, 3/10, pch=21, lwd=4, col="blue")
+
+points(5/2, 3/10, pch=21, lwd=4, col="blue")
+
+points(3, 1/10, pch=21, lwd=4, col="blue")
+```
+  
+## (c) Find the probability $P(2 \leqslant X < 3)$   
+According to the property of the distribution function $F_X(x)$ of a random variable $X$ with $a<b$ and $a,b \in \Re$:  
+\begin{equation}
+  \begin{aligned}
+    P(a \leqslant X < b) & = F(b-) - F(a-) \\
+    \text{we can easily prove this: }  \\
+    \{a \leqslant X < b \} & = \{X < b\} \backslash \{X < a\}  \\
+    \text{thus, based on properties of probabilityt measure:}  \\
+    P(a \leqslant X < b) & = P(X<b) - P(X<a)  \\
+                         & = F(b-) - F(a-)  \\
+    \text{substituting a=2 and b=3:}  \\
+    P(2 \leqslant X < 3) & = F(3-) - F(2-)  \\
+                         & = \frac{9}{10} - \frac{3}{10}  \\
+                         & = \frac{6}{10}  \\
+                         & = \frac{3}{5}  \\
+  \end{aligned}
+\end{equation}
+  
+# **Question 3**  
+## (a)  
+By definition of a cdf of $Y$, denoted by $F_Y(y)$, we have:  
+\begin{equation}
+  \begin{aligned}
+    F_Y(y) & = P(Y \leqslant y) \\
+           & = P(aX + b \leqslant y)  \\
+           & = P(aX \leqslant (y - b))   \\
+           & = P\Big(X \leqslant \frac{y-b}{b}\Big)  \\
+           & = F_X\Big(\frac{y-b}{a}\Big)
+  \end{aligned}
+\end{equation}
+  
+## (b)
+By definition of the cdf of $X$, denoted by $F_X(x)$, we have:  
+\begin{equation}
+  \begin{aligned}
+    F_X(x) & = P(X \leqslant x) \\
+  \end{aligned}
+\end{equation}
+  
+Since $Q_X(p)$ is the inverse of $F_X(x)$, by definition, we have:  
+\begin{equation}
+  \begin{aligned}
+    F_X(Q_X(p)) & = P(X \leqslant Q_X(p))  \\
+    p & = P\Big( \frac{Y - b}{a} \leqslant Q_X(p)\Big) \quad \text{linear transformation of X to Y}  \\
+    p & = P(Y \leqslant aQ_X(p) + b)  \\
+    \text{thus, by definition of the quantile function:  }  \\
+    Q_Y(p) & = aQ_X(x) + b \\
+  \end{aligned}
+\end{equation}
+  
+# **Question 4**  
+Let $X$ be the number of heads in n coin tosses. $X$ follows a binomial distribution with $p=\frac{1}{2}$. We have X as a continuous random variable with finite expectation.    
+We have $X = I_1 + I_2 + ... + I_n$ with $I_i$ be the number of heads on the $i^{th}$ toss.  
+Thus: $E(X) = \sum_{i=1}^n I_{E_i} = np$  
+In addition: $Var(X) = \sum_{i=1}^n Var(I_{E_i}) = \sum_{i=1}^n p(1-p) = np(1-p)$  
+
+With $X$ as the number of heads in n coin tosses, we have $n-X$ as the number of tails in those n coin tosses. The expected product of the number of heads and the number of tails is then:  
+
+\begin{equation}
+  \begin{aligned}
+    E(X(n-X)) & = E(nX - X^2)
+  \end{aligned}
+\end{equation}
+
+Because X as a continuous random variable with finite expectation:  
+
+\begin{equation}
+  \begin{aligned}
+    E(X(n-X)) & = E(nX) - E(X^2)  \\
+              & = nE(X) - E(X^2)  \quad \text{(property of expectation)}  \\
+              & = nE(X) - [(E(X)^2) + Var(X)]  \\
+              & = nnp - (np)^2 - np(1-p)  \\
+              & = n^2p - n^2p^2 - np(1-p)  \\
+              & = \frac{n^2}{2} - \frac{n^2}{4} - \frac{n}{4}  \quad \Big(\text{substituting} \quad p = \frac{1}{2} \Big)  \\
+              & = \frac{n^2}{4} - \frac{n}{4}
+  \end{aligned}
+\end{equation}
+  
+# **Question 5** 
+We have the same space $\Omega = \{BBBBBBBBGGGGGGG, BBBBBBBGBGGGGGG, ... \}$  
+We are looking for expected number of ordered pair $s = \{BG\}$ or $s = \{GB\}$
+
+Let $B$ and $G$ denoting the type, corresponding to "Boy" and "Girl" respectively.  
+Consider the first pair of kids. We have the probability that this ordered pair of two kids has different gender is:  
+
+\begin{equation}
+  \begin{aligned}
+    P & = P({BG}) + P({GB})  \\
+      & = 2*P({BG})  \\
+  \end{aligned}
+\end{equation}
+  
+The above holds true because the process of establishing the ordered pair is indifferent to the outcome, i.e. the ordered inside the pair.  
+
+To find $P({BG})$, we note that for a pair of two kids, there are $15$ ways to arrange seating for 1 kid. Consequently, there are $14$ ways to arrange seating for the immediate following kid. Thus, there are $15*14 = 210$ ways to arrange seating for this pair of kid.  
+
+Further note that there $8*7 = 56$ ways to arrange seating for a pair of $B$ and $G$.  
+
+Therefore, we have $P(\{BG\}) = \frac{56}{210} = \frac{4}{15}$. Consequently, $P = 2*\frac{4}{15} = \frac{8}{15}$. In other world, the probability that an pair of kids will have different "types" is $\frac{8}{15}$.  
+
+Let $X$ be the binomial random variable whose value of $1$ representing the kids in the event the kids at position $X_k$ and $X_{k+1}$ having different "type": "B" or "G". Based on the addition properties of expectation, we have: $E^* = \sum\limits_{i=1}^{n=14} E(X) = 14 * E(X)$.  
+
+Moreover, $E(X) = P(\{BG\})$.  
+
+Thus: $E^* = 14 * \frac{8}{15} = \frac{212}{15}$
+
