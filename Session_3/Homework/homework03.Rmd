@@ -1,0 +1,131 @@
+---
+title: "Homework3"
+author: "Jeff Nguyen"
+date: "15/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, envir=.GlobalEnv)
+```
+  
+**Pre-MFE Probability Seminar**  
+**Baruch College, Fall 2020**  
+
+
+Homework 03  
+Student Name: Ngoc Son (Jeff) Nguyen  
+
+
+# **Question 1**  
+ 
+## (a) Show that this is indeed a probability mass function.
+
+The probability mass function, $p_{X,Y}(i,j)$ of the random vector (X,Y) has the following properties:
+
+**1. All probabilities are positive:**  
+We see this to be true based on the table below with $p_{X,Y}(i,j) = \frac{1}{10} > 0$.  
+**2. Any event in the distribution has a probability of happening of between 0 and 1 (e.g. 0% and 100%).**  
+We see this to also be true with based on the table below.  
+**3. The sum of all probabilities is 100% (i.e. 1 as a decimal):**  
+Or $\sum\limits_{i,j = 1, i \leqslant j}^4 p_{X,Y}(i,j) = 1$. We see this to also be true based on the table below.  
+
+i,j          | 1               | 2                | 3               | 4              | X (Marginal)
+---          | ---             | ---              | ---             | ---            | ---  
+1            | $\frac{1}{10}$  | $\frac{1}{10}$   | $\frac{1}{10}$  | $\frac{1}{10}$ | $\frac{2}{5}$
+2            | $0$             | $\frac{1}{10}$   | $\frac{1}{10}$  | $\frac{1}{10}$ | $\frac{3}{10}$
+3            | $0$             | $0$              | $\frac{1}{10}$  | $\frac{1}{10}$ | $\frac{1}{5}$
+4            | $0$             | $0$              | $0$             | $\frac{1}{10}$ | $\frac{1}{10}$
+Y (marginal) | $\frac{1}{10}$  | $\frac{1}{5}$    | $\frac{3}{10}$  | $\frac{2}{5}$  | $1$
+  
+## (b) Compute the marginal distributions of X and Y.  
+Computed in the table above.  
+
+## (c) Are X and Y independent?  
+Recall that random variables X and Y are independent if $P(X=i, Y=j) = P(X=i) * P(Y=j) \quad \forall i,j$.  
+
+From the table above:  
+\begin{equation}
+  \begin{aligned}
+    P(X=1, Y=1) & = \frac{1}{10}  \\
+    P(X=1)*P(Y=1) & = \frac{2}{5} * \frac{1}{10} = \frac{1}{25}  \\
+  \end{aligned}
+\end{equation}
+  
+We can see that: $P(X=1, Y=1) \neq P(X=1)*P(Y=1)$.  
+Thus, X and Y are not independent.  
+## (d) Compute E(XY ).  
+\begin{equation}
+  \begin{aligned}
+    E(X,Y) = &\sum\limits_{i,j} i*j*P(X=i, Y=j) \\
+           = &1*1*P(X=1, Y=1) + 1*2*P(X=1, Y=2) + 1*3*P(X=1, Y=3) + 1*4*P(X=1, Y=4) +  \\
+             &2*2*P(X=2, Y=2) + 2*3*P(X=2, Y=3) + 2*4*P(X=2, Y=4) +  \\
+             &3*3*P(X=3, Y=3) + 3*4*P(X=3, Y=4) +  \\
+             &4*4*P(X=4, Y=4)  \\
+           = &\frac{1}{10} + 2*\frac{1}{10} + 3*\frac{1}{10} + 4*\frac{1}{10} +   \\
+             &4*\frac{1}{10} + 6*\frac{1}{10} + 8*\frac{1}{10} +  \\
+             &9*\frac{1}{10} + 12*\frac{1}{10} +  \\
+             &16*\frac{1}{10}  \\
+           = &\frac{1}{10} + \frac{1}{5} + \frac{3}{10} + \frac{2}{5} +   \\
+             &\frac{2}{5} + \frac{3}{5} + \frac{4}{5} +  \\
+             &\frac{9}{10} + \frac{6}{5} +  \\
+             &\frac{8}{5}  \\
+           = &\frac{13}{2} \\
+  \end{aligned}
+\end{equation}
+  
+# **Question 2**  
+
+We have: $E(X|Y=y) = \sum\limits_{x} x*p_{X|Y}(x|y)$. Thus:  
+
+\begin{equation}
+  \begin{aligned}
+    E(X|Y=1) =& 1*p_{X|Y}(1|1) + 2*p_{X|Y}(2|1) + 3*p_{X|Y}(3|1) + 4*p_{X|Y}(4|1)  \\
+             =& P(X=1|Y=1) + 2*0 + 3*0 + 4*0  \\
+             =& \frac{p_{1,1}}{P(Y=1)}  \\
+             =& \frac{\frac{1}{10}}{\frac{1}{10}}  \\
+             =& 1  \\
+    E(X|Y=2) =& 1*p_{X|Y}(1|2) + 2*p_{X|Y}(2|2) + 3*p_{X|Y}(3|2) + 4*p_{X|Y}(4|2)  \\
+             =& P(X=1|Y=2) + 2*P(X=2|Y=2) + 3*0 + 4*0  \\
+             =& \frac{p_{1,2}}{P(Y=2)} + 2*\frac{p_{2,2}}{P(Y=2)}  \\
+             =& \frac{\frac{1}{10}}{\frac{1}{5}} + 2*\frac{\frac{1}{10}}{\frac{1}{5}}  \\
+             =& \frac{3}{2}  \\
+    E(X|Y=3) =& 1*p_{X|Y}(1|3) + 2*p_{X|Y}(2|3) + 3*p_{X|Y}(3|3) + 4*p_{X|Y}(4|3)  \\
+             =& P(X=1|Y=3) + 2*P(X=2|Y=3) + 3*P(X=3|Y=3) + 4*0  \\
+             =& \frac{p_{1,3}}{P(Y=3)} + 2*\frac{p_{2,3}}{P(Y=3)} + 3*\frac{p_{3,3}}{P(Y=3)}  \\
+             =& \frac{\frac{1}{10}}{\frac{3}{10}} + 2*\frac{\frac{1}{10}}{\frac{3}{10}} + 3*\frac{\frac{1}{10}}{\frac{3}{10}}  \\
+             =& 2  \\
+    E(X|Y=4) =& 1*p_{X|Y}(1|4) + 2*p_{X|Y}(2|4) + 3*p_{X|Y}(3|4) + 4*p_{X|Y}(4|4)  \\
+             =& P(X=1|Y=4) + 2*P(X=2|Y=4) + 3*P(X=3|Y=4) + 4*P(X=4|Y=4)  \\
+             =& \frac{p_{1,4}}{P(Y=4)} + 2*\frac{p_{2,4}}{P(Y=4)} + 3*\frac{p_{3,4}}{P(Y=4)} + 4*\frac{p_{4,4}}{P(Y=4)}  \\
+             =& \frac{\frac{1}{10}}{\frac{2}{5}} + 2*\frac{\frac{1}{10}}{\frac{2}{5}} + 3*\frac{\frac{1}{10}}{\frac{2}{5}} +                     4*\frac{\frac{1}{10}}{\frac{2}{5}}  \\
+             =& \frac{5}{2}  \\
+  \end{aligned}
+\end{equation}
+  
+Alternatively, we have: $E(Y|X=x) = \sum\limits_{y} x*p_{Y|X}(y|x)$. Thus:  
+
+\begin{equation}
+  \begin{aligned}
+    E(Y|X=1) =& 1*p_{Y|X}(1|1) + 2*p_{Y|X}(2|1) + 3*p_{Y|X}(3|1) + 4*p_{Y|X}(4|1)  \\
+             =& P(Y=1|X=1) + 2*P(Y=2|X=1) + 3*P(Y=3|X=1) + 3*P(Y=4|X=1)  \\
+             =& \frac{p_{1,1}}{P(X=1)} + 2*\frac{p_{1,2}}{P(X=1)} + 3*\frac{p_{1,3}}{P(X=1)} + 4*\frac{p_{1,4}}{P(X=1)}   \\
+             =& \frac{\frac{1}{10}}{\frac{2}{5}} + 2*\frac{\frac{1}{10}}{\frac{2}{5}} + 3*\frac{\frac{1}{10}}{\frac{2}{5}} + 4*\frac{\frac{1}{10}}{\frac{2}{5}}  \\
+             =& \frac{5}{2}  \\
+    E(Y|X=2) =& 1*p_{Y|X}(1|2) + 2*p_{Y|X}(2|2) + 3*p_{Y|X}(3|2) + 4*p_{Y|X}(4|2)  \\
+             =& P(Y=1|X=2) + 2*P(Y=2|X=2) + 3*P(Y=3|X=2) + 3*P(Y=4|X=2)  \\
+             =& \frac{p_{2,1}}{P(X=2)} + 2*\frac{p_{2,2}}{P(X=2)} + 3*\frac{p_{2,3}}{P(X=2)} + 4*\frac{p_{2,4}}{P(X=2)}   \\
+             =& \frac{0}{\frac{3}{10}} + 2*\frac{\frac{1}{10}}{\frac{3}{10}} + 3*\frac{\frac{1}{10}}{\frac{3}{10}} +             4*\frac{\frac{1}{10}}{\frac{3}{10}}  \\
+             =& 3  \\
+    E(Y|X=3) =& 1*p_{Y|X}(1|3) + 2*p_{Y|X}(2|3) + 3*p_{Y|X}(3|3) + 4*p_{Y|X}(4|3)  \\
+             =& P(Y=1|X=3) + 2*P(Y=2|X=3) + 3*P(Y=3|X=3) + 3*P(Y=4|X=3)  \\
+             =& \frac{p_{3,1}}{P(X=3)} + 2*\frac{p_{3,2}}{P(X=3)} + 3*\frac{p_{3,3}}{P(X=3)} + 4*\frac{p_{3,4}}{P(X=3)}   \\
+             =& \frac{0}{\frac{1}{5}} + 2*\frac{0}{\frac{1}{5}} + 3*\frac{\frac{1}{10}}{\frac{1}{5}} + 4*\frac{\frac{1}{10}}{\frac{1}{5}}  \\
+             =& \frac{7}{2}  \\
+    E(Y|X=4) =& 1*p_{Y|X}(1|4) + 2*p_{Y|X}(2|4) + 3*p_{Y|X}(3|4) + 4*p_{Y|X}(4|4)  \\
+             =& P(Y=1|X=4) + 2*P(Y=2|X=4) + 3*P(Y=3|X=4) + 3*P(Y=4|X=4)  \\
+             =& \frac{p_{4,1}}{P(X=4)} + 2*\frac{p_{4,2}}{P(X=4)} + 3*\frac{p_{4,3}}{P(X=4)} + 4*\frac{p_{4,4}}{P(X=4)}   \\
+             =& \frac{0}{\frac{1}{5}} + 2*\frac{0}{\frac{1}{5}} + 3*\frac{0}{\frac{1}{5}} + 4*\frac{\frac{1}{10}}{\frac{1}{10}}  \\
+             =& 1  \\
+  \end{aligned}
+\end{equation} 
