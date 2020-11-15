@@ -35,7 +35,7 @@ Thus, based on the property of distribution function of a random variable:
   \end{aligned}
 \end{equation}
   
-Furthermore, based on the definition of the cumulative distribution fucntion of Y, we have:  
+Furthermore, based on the definition of the cumulative distribution function of Y, we have:  
 \begin{equation}
   \begin{aligned}
     P(Y \leqslant 11) & = \sum_{y_0 < y} P(Y = y_0)  \\
