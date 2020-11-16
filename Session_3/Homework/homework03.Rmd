@@ -54,23 +54,25 @@ From the table above:
   
 We can see that: $P(X=1, Y=1) \neq P(X=1)*P(Y=1)$.  
 Thus, X and Y are not independent.  
+
 ## (d) Compute E(XY ).  
+
 \begin{equation}
   \begin{aligned}
-    E(X,Y) = &\sum\limits_{i,j} i*j*P(X=i, Y=j) \\
-           = &1*1*P(X=1, Y=1) + 1*2*P(X=1, Y=2) + 1*3*P(X=1, Y=3) + 1*4*P(X=1, Y=4) +  \\
-             &2*2*P(X=2, Y=2) + 2*3*P(X=2, Y=3) + 2*4*P(X=2, Y=4) +  \\
-             &3*3*P(X=3, Y=3) + 3*4*P(X=3, Y=4) +  \\
-             &4*4*P(X=4, Y=4)  \\
-           = &\frac{1}{10} + 2*\frac{1}{10} + 3*\frac{1}{10} + 4*\frac{1}{10} +   \\
-             &4*\frac{1}{10} + 6*\frac{1}{10} + 8*\frac{1}{10} +  \\
-             &9*\frac{1}{10} + 12*\frac{1}{10} +  \\
-             &16*\frac{1}{10}  \\
-           = &\frac{1}{10} + \frac{1}{5} + \frac{3}{10} + \frac{2}{5} +   \\
-             &\frac{2}{5} + \frac{3}{5} + \frac{4}{5} +  \\
-             &\frac{9}{10} + \frac{6}{5} +  \\
-             &\frac{8}{5}  \\
-           = &\frac{13}{2} \\
+    E(X,Y) =& \sum\limits_{i,j} i*j*P(X=i, Y=j) \\
+           =& 1*1*P(X=1, Y=1) + 1*2*P(X=1, Y=2) + 1*3*P(X=1, Y=3) + 1*4*P(X=1, Y=4) +  \\
+            & 2*2*P(X=2, Y=2) + 2*3*P(X=2, Y=3) + 2*4*P(X=2, Y=4) +  \\
+            & 3*3*P(X=3, Y=3) + 3*4*P(X=3, Y=4) +  \\
+            & 4*4*P(X=4, Y=4)  \\
+           =& \frac{1}{10} + 2*\frac{1}{10} + 3*\frac{1}{10} + 4*\frac{1}{10} +   \\
+            & 4*\frac{1}{10} + 6*\frac{1}{10} + 8*\frac{1}{10} +  \\
+            & 9*\frac{1}{10} + 12*\frac{1}{10} +  \\
+            & 16*\frac{1}{10}  \\
+           =& \frac{1}{10} + \frac{1}{5} + \frac{3}{10} + \frac{2}{5} +   \\
+            & \frac{2}{5} + \frac{3}{5} + \frac{4}{5} +  \\
+            & \frac{9}{10} + \frac{6}{5} +  \\
+            & \frac{8}{5}  \\
+           =& \frac{13}{2} \\
   \end{aligned}
 \end{equation}
   
@@ -128,4 +130,45 @@ Alternatively, we have: $E(Y|X=x) = \sum\limits_{y} x*p_{Y|X}(y|x)$. Thus:
              =& \frac{0}{\frac{1}{5}} + 2*\frac{0}{\frac{1}{5}} + 3*\frac{0}{\frac{1}{5}} + 4*\frac{\frac{1}{10}}{\frac{1}{10}}  \\
              =& 1  \\
   \end{aligned}
-\end{equation} 
+\end{equation}  
+
+# **Question 3**  
+
+We have multiple sample spaces $\Omega$ with their respective subsets $s$ as follow:  
+
+B,G          | 0               | 1                      | 2                       | 3               | B (Marginal)
+---          | ---             | ---                    | ---                     | ---             | ---  
+0            | $\emptyset$     | $\{G\}$                | $\{GG\}$                | $\{ GGG\}$      | NA
+1            | $\{B\}$         | $\{BG, GB\}$           | $\{BGG, GBG, GGB\}$     | $\emptyset$     | NA
+2            | $\{BB\}$        | $\{BBG, BGB, GBB\}$    | $\emptyset$             | $\emptyset$     | NA
+3            | $\emptyset$     | $\emptyset$            | $\emptyset$             | $\emptyset$     | NA
+G (Marginal) | NA              | NA                     | NA                      | NA              | NA
+  
+We have:  
+
+\begin{equation}
+  \begin{aligned}
+    P(B=0, G=0) =& .15 \, \text{as given} = .15 \\
+    P(B=0, G=1) =& .2 * \frac{|s_{0,1}|}{|\Omega_1|} = .2 * \frac{1}{2} = .1  \\
+    P(B=1, G=0) =& .2 * \frac{|s_{1,0}|}{|\Omega_1|} = .2 * \frac{1}{2} = .1  \\
+    P(B=0, G=2) =& .35 * \frac{|s_{0,2}|}{|\Omega_2|} = .35 * \frac{1}{4} = .0875  \\
+    P(B=1, G=1) =& .35 * \frac{|s_{1,1}|}{|\Omega_2|} = .35 * \frac{2}{4} = .175   \\
+    P(B=2, G=0) =& .35 * \frac{|s_{2,0}|}{|\Omega_2|} = .35 * \frac{1}{4} = .0875  \\
+    P(B=0, G=3) =& .30 * \frac{|s_{0,3}|}{|\Omega_3|} = .3 * \frac{1}{8} = .0375  \\
+    P(B=1, G=2) =& .30 * \frac{|s_{1,2}|}{|\Omega_3|} = .3 * \frac{3}{8} = .1125  \\
+    P(B=2, G=1) =& .30 * \frac{|s_{2,1}|}{|\Omega_3|} = .3 * \frac{3}{8} = .1125  \\
+    P(B=3, G=0) =& .30 * \frac{|s_{3,0}|}{|\Omega_3|} = .3 * \frac{1}{8} = .0375  \\
+  \end{aligned}
+\end{equation}
+  
+Applying the probabilities, we have the joint probability mass function $p_{(B,G)}$ as follow:  
+
+B,G          | 0         | 1        | 2        | 3        | B (Marginal)
+---          | ---       | ---      | ---      | ---      | ---  
+0            | $.15$     | $.1$     | $.0875$  | $.0375$  | $.375$
+1            | $.1$      | $.175$   | $.1125$  | $0$      | $.3875$
+2            | $.0875$   | $.1125$  | $0$      | $0$      | $.2$
+3            | $.0375$   | $0$      | $0$      | $0$      | $.0375$
+G (Marginal) | $.0375$   | $.3875$  | $.2$     | $.0375$  | $1$  
+
+# **Question 4** 

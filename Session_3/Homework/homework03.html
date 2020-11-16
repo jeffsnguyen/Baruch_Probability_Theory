@@ -502,24 +502,26 @@ Or <span class="math inline">\(\sum\limits_{i,j = 1, i \leqslant j}^4 p_{X,Y}(i,
   \end{aligned}
 \end{equation}\]</span></p>
 <p>We can see that: <span class="math inline">\(P(X=1, Y=1) \neq P(X=1)*P(Y=1)\)</span>.<br />
-Thus, X and Y are not independent.<br />
-## (d) Compute E(XY ).<br />
-<span class="math display">\[\begin{equation}
+Thus, X and Y are not independent.</p>
+</div>
+<div id="d-compute-exy-." class="section level2">
+<h2>(d) Compute E(XY ).</h2>
+<p><span class="math display">\[\begin{equation}
   \begin{aligned}
-    E(X,Y) = &amp;\sum\limits_{i,j} i*j*P(X=i, Y=j) \\
-           = &amp;1*1*P(X=1, Y=1) + 1*2*P(X=1, Y=2) + 1*3*P(X=1, Y=3) + 1*4*P(X=1, Y=4) +  \\
-             &amp;2*2*P(X=2, Y=2) + 2*3*P(X=2, Y=3) + 2*4*P(X=2, Y=4) +  \\
-             &amp;3*3*P(X=3, Y=3) + 3*4*P(X=3, Y=4) +  \\
-             &amp;4*4*P(X=4, Y=4)  \\
-           = &amp;\frac{1}{10} + 2*\frac{1}{10} + 3*\frac{1}{10} + 4*\frac{1}{10} +   \\
-             &amp;4*\frac{1}{10} + 6*\frac{1}{10} + 8*\frac{1}{10} +  \\
-             &amp;9*\frac{1}{10} + 12*\frac{1}{10} +  \\
-             &amp;16*\frac{1}{10}  \\
-           = &amp;\frac{1}{10} + \frac{1}{5} + \frac{3}{10} + \frac{2}{5} +   \\
-             &amp;\frac{2}{5} + \frac{3}{5} + \frac{4}{5} +  \\
-             &amp;\frac{9}{10} + \frac{6}{5} +  \\
-             &amp;\frac{8}{5}  \\
-           = &amp;\frac{13}{2} \\
+    E(X,Y) =&amp; \sum\limits_{i,j} i*j*P(X=i, Y=j) \\
+           =&amp; 1*1*P(X=1, Y=1) + 1*2*P(X=1, Y=2) + 1*3*P(X=1, Y=3) + 1*4*P(X=1, Y=4) +  \\
+            &amp; 2*2*P(X=2, Y=2) + 2*3*P(X=2, Y=3) + 2*4*P(X=2, Y=4) +  \\
+            &amp; 3*3*P(X=3, Y=3) + 3*4*P(X=3, Y=4) +  \\
+            &amp; 4*4*P(X=4, Y=4)  \\
+           =&amp; \frac{1}{10} + 2*\frac{1}{10} + 3*\frac{1}{10} + 4*\frac{1}{10} +   \\
+            &amp; 4*\frac{1}{10} + 6*\frac{1}{10} + 8*\frac{1}{10} +  \\
+            &amp; 9*\frac{1}{10} + 12*\frac{1}{10} +  \\
+            &amp; 16*\frac{1}{10}  \\
+           =&amp; \frac{1}{10} + \frac{1}{5} + \frac{3}{10} + \frac{2}{5} +   \\
+            &amp; \frac{2}{5} + \frac{3}{5} + \frac{4}{5} +  \\
+            &amp; \frac{9}{10} + \frac{6}{5} +  \\
+            &amp; \frac{8}{5}  \\
+           =&amp; \frac{13}{2} \\
   \end{aligned}
 \end{equation}\]</span></p>
 </div>
@@ -576,6 +578,137 @@ Thus, X and Y are not independent.<br />
              =&amp; 1  \\
   \end{aligned}
 \end{equation}\]</span></p>
+</div>
+<div id="question-3" class="section level1">
+<h1><strong>Question 3</strong></h1>
+<p>We have multiple sample spaces <span class="math inline">\(\Omega\)</span> with their respective subsets <span class="math inline">\(s\)</span> as follow:</p>
+<table>
+<thead>
+<tr class="header">
+<th>B,G</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>B (Marginal)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td><span class="math inline">\(\emptyset\)</span></td>
+<td><span class="math inline">\(\{G\}\)</span></td>
+<td><span class="math inline">\(\{GG\}\)</span></td>
+<td><span class="math inline">\(\{ GGG\}\)</span></td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td><span class="math inline">\(\{B\}\)</span></td>
+<td><span class="math inline">\(\{BG, GB\}\)</span></td>
+<td><span class="math inline">\(\{BGG, GBG, GGB\}\)</span></td>
+<td><span class="math inline">\(\emptyset\)</span></td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><span class="math inline">\(\{BB\}\)</span></td>
+<td><span class="math inline">\(\{BBG, BGB, GBB\}\)</span></td>
+<td><span class="math inline">\(\emptyset\)</span></td>
+<td><span class="math inline">\(\emptyset\)</span></td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td><span class="math inline">\(\emptyset\)</span></td>
+<td><span class="math inline">\(\emptyset\)</span></td>
+<td><span class="math inline">\(\emptyset\)</span></td>
+<td><span class="math inline">\(\emptyset\)</span></td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>G (Marginal)</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<p>We have:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    P(B=0, G=0) =&amp; .15 \, \text{as given} = .15 \\
+    P(B=0, G=1) =&amp; .2 * \frac{|s_{0,1}|}{|\Omega_1|} = .2 * \frac{1}{2} = .1  \\
+    P(B=1, G=0) =&amp; .2 * \frac{|s_{1,0}|}{|\Omega_1|} = .2 * \frac{1}{2} = .1  \\
+    P(B=0, G=2) =&amp; .35 * \frac{|s_{0,2}|}{|\Omega_2|} = .35 * \frac{1}{4} = .0875  \\
+    P(B=1, G=1) =&amp; .35 * \frac{|s_{1,1}|}{|\Omega_2|} = .35 * \frac{2}{4} = .175   \\
+    P(B=2, G=0) =&amp; .35 * \frac{|s_{2,0}|}{|\Omega_2|} = .35 * \frac{1}{4} = .0875  \\
+    P(B=0, G=3) =&amp; .30 * \frac{|s_{0,3}|}{|\Omega_3|} = .3 * \frac{1}{8} = .0375  \\
+    P(B=1, G=2) =&amp; .30 * \frac{|s_{1,2}|}{|\Omega_3|} = .3 * \frac{3}{8} = .1125  \\
+    P(B=2, G=1) =&amp; .30 * \frac{|s_{2,1}|}{|\Omega_3|} = .3 * \frac{3}{8} = .1125  \\
+    P(B=3, G=0) =&amp; .30 * \frac{|s_{3,0}|}{|\Omega_3|} = .3 * \frac{1}{8} = .0375  \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>Applying the probabilities, we have the joint probability mass function <span class="math inline">\(p_{(B,G)}\)</span> as follow:</p>
+<table>
+<thead>
+<tr class="header">
+<th>B,G</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>B (Marginal)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td><span class="math inline">\(.15\)</span></td>
+<td><span class="math inline">\(.1\)</span></td>
+<td><span class="math inline">\(.0875\)</span></td>
+<td><span class="math inline">\(.0375\)</span></td>
+<td><span class="math inline">\(.375\)</span></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td><span class="math inline">\(.1\)</span></td>
+<td><span class="math inline">\(.175\)</span></td>
+<td><span class="math inline">\(.1125\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(.3875\)</span></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><span class="math inline">\(.0875\)</span></td>
+<td><span class="math inline">\(.1125\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(.2\)</span></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td><span class="math inline">\(.0375\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(.0375\)</span></td>
+</tr>
+<tr class="odd">
+<td>G (Marginal)</td>
+<td><span class="math inline">\(.0375\)</span></td>
+<td><span class="math inline">\(.3875\)</span></td>
+<td><span class="math inline">\(.2\)</span></td>
+<td><span class="math inline">\(.0375\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="question-4" class="section level1">
+<h1><strong>Question 4</strong></h1>
 </div>
 
 
