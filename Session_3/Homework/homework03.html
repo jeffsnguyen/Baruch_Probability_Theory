@@ -435,7 +435,7 @@ Or <span class="math inline">\(\sum\limits_{i,j = 1, i \leqslant j}^4 p_{X,Y}(i,
 <table>
 <thead>
 <tr class="header">
-<th>i,j</th>
+<th>(i,j) = (row,col)</th>
 <th>1</th>
 <th>2</th>
 <th>3</th>
@@ -585,7 +585,7 @@ Thus, X and Y are not independent.</p>
 <table>
 <thead>
 <tr class="header">
-<th>B,G</th>
+<th>B,G = (row,col)</th>
 <th>0</th>
 <th>1</th>
 <th>2</th>
@@ -655,7 +655,7 @@ Thus, X and Y are not independent.</p>
 <table>
 <thead>
 <tr class="header">
-<th>B,G</th>
+<th>(B,G) = (row,col)</th>
 <th>0</th>
 <th>1</th>
 <th>2</th>
@@ -709,6 +709,429 @@ Thus, X and Y are not independent.</p>
 </div>
 <div id="question-4" class="section level1">
 <h1><strong>Question 4</strong></h1>
+<p>Let <span class="math inline">\(D_1\)</span> nad <span class="math inline">\(D_2\)</span> denotes the resulting value of the first and second die, respectively.<br />
+We have the sample space <span class="math inline">\(\Omega_{(D_1,D_2)}\)</span> as follow, with each tuple represents <span class="math inline">\((D_1, D_2)\)</span>:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    \Omega_{D_1,D_2} =&amp; \left\{
+                        \begin{matrix}
+                          (1,1), &amp; (1,2), &amp; (1,3), &amp; (1,4), &amp; (1,5), &amp; (1,6) \\
+                          (2,1), &amp; (2,2), &amp; (2,3), &amp; (2,4), &amp; (2,5), &amp; (2,6) \\
+                          (3,1), &amp; (3,2), &amp; (3,3), &amp; (3,4), &amp; (3,5), &amp; (3,6) \\
+                          (4,1), &amp; (4,2), &amp; (4,3), &amp; (4,4), &amp; (4,5), &amp; (4,6) \\
+                          (5,1), &amp; (5,2), &amp; (5,3), &amp; (5,4), &amp; (5,5), &amp; (5,6) \\
+                          (6,1), &amp; (6,2), &amp; (6,3), &amp; (6,4), &amp; (6,5), &amp; (6,6) \\
+                        \end{matrix}
+                        \right\}
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>We can easily see that <span class="math inline">\(|\Omega_{(D_1,D_2)}| = 36\)</span>.</p>
+<div id="a-x-is-the-largest-value-obtained-and-y-is-the-sum-of-the-values" class="section level2">
+<h2>(a) X is the largest value obtained, and Y is the sum of the values</h2>
+<p>In this case, we have the random variables:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    X =&amp; max(D_1, D_2) = x \\
+    Y =&amp; D_1 + D_2 = y \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>From observing <span class="math inline">\(\Omega_{D_1,D_2}\)</span>, we can see the set of outcomes for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> as follow:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    X =&amp; \{1,2,3, ... ,6\}  \\
+    Y =&amp; \{2,3,4, ... ,12\} \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>The corresponding sample space of <span class="math inline">\((X,Y)\)</span> is:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    \Omega_{X,Y} =&amp; \left\{
+                    \begin{matrix}
+                      (1,2), &amp; (2,3), &amp; (3,4), &amp; (4,5), &amp; (5,6), &amp; (6,7) \\
+                      (2,3), &amp; (2,4), &amp; (3,5), &amp; (4,6), &amp; (5,7), &amp; (6,8) \\
+                      (3,4), &amp; (3,5), &amp; (3,6), &amp; (4,7), &amp; (5,8), &amp; (6,9) \\
+                      (4,5), &amp; (4,6), &amp; (4,7), &amp; (4,8), &amp; (5,9), &amp; (6,10) \\
+                      (5,6), &amp; (5,7), &amp; (5,8), &amp; (5,9), &amp; (5,10), &amp; (6,11) \\
+                      (6,7), &amp; (6,8), &amp; (6,9), &amp; (6,10), &amp; (6,11), &amp; (6,12) \\
+                    \end{matrix}
+                    \right\}
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>Arrange the outcomes <span class="math inline">\((X,Y)\)</span> into a joint probability table:</p>
+<table>
+<colgroup>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>(<span class="math inline">\(X\)</span>,<span class="math inline">\(Y\)</span>) = (row,col)</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Through inspection of the joint probability table, we can spot the pattern of the only pairs having positive probability are <span class="math inline">\((x,x) \forall y=2x\)</span> or <span class="math inline">\((x,y-x) \text{and }(y-x,x) \forall y&lt;2x\)</span>. Thus the joint probability mass function is:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    P(X=x, Y=y) =&amp; \left\{
+                   \begin{matrix}
+                    \frac{1}{36} \quad \forall y=2x, x,y \in \mathbb N \\
+                    \frac{1}{18} \quad \forall x&lt;y&lt;2x, x,y \in \mathbb N \\
+                   \end{matrix}
+                   \right.
+  \end{aligned}
+\end{equation}\]</span></p>
+</div>
+<div id="b-x-is-the-value-on-the-first-die-and-y-is-the-largest-value" class="section level2">
+<h2>(b) X is the value on the first die, and Y is the largest value;</h2>
+<p>In this case, we have the random variables:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    X =&amp; D_1 = x \\
+    Y =&amp; max(D_1, D_2) = y \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>From observing <span class="math inline">\(\Omega_{D_1,D_2}\)</span>, we can see the set of outcomes for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> as follow:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    X =&amp; \{1,2,3, ... ,6\}  \\
+    Y =&amp; \{1,2,3, ... ,6\} \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>The corresponding sample space of <span class="math inline">\((X,Y)\)</span> is:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    \Omega_{X,Y} =&amp; \left\{
+                    \begin{matrix}
+                      (1,1), &amp; (1,2), &amp; (1,3), &amp; (1,4), &amp; (1,5), &amp; (1,6) \\
+                      (2,2), &amp; (2,2), &amp; (2,3), &amp; (2,4), &amp; (2,5), &amp; (2,6) \\
+                      (3,3), &amp; (3,3), &amp; (3,3), &amp; (3,4), &amp; (3,5), &amp; (3,6) \\
+                      (4,4), &amp; (4,4), &amp; (4,4), &amp; (4,4), &amp; (4,5), &amp; (4,6) \\
+                      (5,5), &amp; (5,5), &amp; (5,5), &amp; (5,5), &amp; (5,5), &amp; (5,6) \\
+                      (6,6), &amp; (6,6), &amp; (6,6), &amp; (6,6), &amp; (6,6), &amp; (6,6) \\
+                    \end{matrix}
+                    \right\}
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>Arrange the outcomes <span class="math inline">\((X,Y)\)</span> into a joint probability table:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>(<span class="math inline">\(X\)</span>,<span class="math inline">\(Y\)</span>) = (row,col)</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{12}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{9}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{5}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{6}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Through inspection, we have the joint probability mass function:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    P(X=x, Y=y) =&amp; \left\{
+                   \begin{matrix}
+                    \frac{x}{36} \quad \forall x=y, x,y \in \mathbb N \\
+                    \frac{1}{36} \quad \forall x&lt;y, x,y \in \mathbb N \\
+                   \end{matrix}
+                   \right.
+  \end{aligned}
+\end{equation}\]</span></p>
+</div>
+<div id="c-x-is-the-smallest-value-and-y-is-the-largest." class="section level2">
+<h2>(c) X is the smallest value, and Y is the largest.</h2>
+<p>In this case, we have the random variables:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    X =&amp; min(D_1,D_2) = x \\
+    Y =&amp; max(D_1, D_2) = y \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>From observing <span class="math inline">\(\Omega_{D_1,D_2}\)</span>, we can see the set of outcomes for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> as follow:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    X =&amp; \{1,2,3, ... ,6\}  \\
+    Y =&amp; \{1,2,3, ... ,6\} \\
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>The corresponding sample space of <span class="math inline">\((X,Y)\)</span> is:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    \Omega_{X,Y} =&amp; \left\{
+                    \begin{matrix}
+                      (1,1), &amp; (1,2), &amp; (1,3), &amp; (1,4), &amp; (1,5), &amp; (1,6) \\
+                      (1,2), &amp; (2,2), &amp; (2,3), &amp; (2,4), &amp; (2,5), &amp; (2,6) \\
+                      (1,3), &amp; (2,3), &amp; (3,3), &amp; (3,4), &amp; (3,5), &amp; (3,6) \\
+                      (1,4), &amp; (2,4), &amp; (3,4), &amp; (4,4), &amp; (4,5), &amp; (4,6) \\
+                      (1,5), &amp; (2,5), &amp; (3,5), &amp; (4,5), &amp; (5,5), &amp; (5,6) \\
+                      (1,6), &amp; (2,6), &amp; (3,6), &amp; (4,6), &amp; (5,6), &amp; (6,6) \\
+                    \end{matrix}
+                    \right\}
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>Arrange the outcomes <span class="math inline">\((X,Y)\)</span> into a joint probability table:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>(<span class="math inline">\(X\)</span>,<span class="math inline">\(Y\)</span>) = (row,col)</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+<td><span class="math inline">\(\frac{1}{18}\)</span></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Through inspection, we have the joint probability mass function:</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    P(X=x, Y=y) =&amp; \left\{
+                   \begin{matrix}
+                    \frac{1}{36} \quad \forall x=y, x,y \in \mathbb N \\
+                    \frac{1}{18} \quad \forall x&lt;y, x,y \in \mathbb N \\
+                   \end{matrix}
+                   \right.
+  \end{aligned}
+\end{equation}\]</span></p>
+</div>
 </div>
 
 
