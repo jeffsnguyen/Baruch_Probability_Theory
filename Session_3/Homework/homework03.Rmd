@@ -2,7 +2,9 @@
 title: "Homework3"
 author: "Jeff Nguyen"
 date: "15/11/2020"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -619,6 +621,6 @@ We have: $E(Y|X=x) = \sum\limits_{y} x*p_{Y|X}(y|x)$. Thus:
   \end{aligned}
 \end{equation}  
 
-# **Question 6**  
+# **Question 6-10**  
 
-Hi
+Did not have time to do them. Homework too long. RIP.
