@@ -4,12 +4,13 @@ author: "Jeff Nguyen"
 date: "15/11/2020"
 output:
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, envir=.GlobalEnv)
 ```
-  
+
 **Pre-MFE Probability Seminar**  
 **Baruch College, Fall 2020**  
 
@@ -56,3 +57,169 @@ We have:
     \Pi_0 =& \frac{1}{(1+r)^n} \sum_{k=0}^{n} (K - S(0)u^k d^{n-k})^+ {n \choose k} \Big(\frac{1+r-d}{u-d}\Big)^k \Big(\frac{u-1-r}{u-d}\Big)^{n-k}  \\
   \end{aligned}
 \end{equation}  
+
+# **Question 3**  
+
+## Pricing digital call option:  
+
+Digital call option pay off is given as follow:  
+
+\begin{equation}
+  \begin{aligned}
+    \Pi_{n_C} =& \left\{
+                 \begin{matrix}
+                  1 \quad \text{,iff} \quad Sn \geqslant K \\
+                  0 \quad \text{,iff} \quad Sn < K \\
+                 \end{matrix}
+                 \right. \\
+    \text{or}  \\
+    f(S_n) =& I_{S_n - K \geqslant 0}  \\
+  \end{aligned}
+\end{equation}  
+
+We have the initial price $\Pi_{0_c}$ of the call to be: 
+
+\begin{equation}
+  \begin{aligned}
+    \Pi_{0_C} =& \text{Discount Factor} * E\left(f(S_n) \right)  \\
+              =& e^{-rn} * E\left(f(S_n) \right)\\
+              =& e^{-rn} * E\left(I_{S_n - K \geqslant 0} \right)  \\
+              =& e^{-rn} * P\left(Sn - K \geqslant 0 \right)  \\
+              =& e^{-rn} * P\left(Sn \geqslant K \right)  \\
+  \end{aligned}
+\end{equation} 
+
+## Pricing digital put option:   
+
+Digital call option pay off is given as follow:  
+
+\begin{equation}
+  \begin{aligned}
+    \Pi_{n_P} =& \left\{
+                 \begin{matrix}
+                  1 \quad \text{,iff} \quad Sn < K \\
+                  0 \quad \text{,iff} \quad Sn \geq K \\
+                 \end{matrix}
+                 \right. \\
+    \text{or}  \\
+    g(S_n) =& I_{S_n - K < 0}  \\
+  \end{aligned}
+\end{equation}  
+
+We have the initial price $\Pi_{0_p}$ of the put to be: 
+
+\begin{equation}
+  \begin{aligned}
+    \Pi_{0_P} =& \text{Discount Factor} * E\left(g(S_n) \right)  \\
+              =& e^{-rn} * E\left(g(S_n) \right)\\
+              =& e^{-rn} * E\left(I_{S_n - K < 0} \right)  \\
+              =& e^{-rn} * P\left(Sn - K < 0 \right)  \\
+              =& e^{-rn} * P\left(Sn < K \right)  \\
+  \end{aligned}
+\end{equation}  
+
+## Pricing the portfolio  
+
+From above, we can see:  
+
+\begin{equation}
+  \begin{aligned}
+    \Pi_{0_C} + \Pi_{0_P} =& e^{-rn} * P\left(Sn \geqslant K \right) + e^{-rn} * P\left(Sn < K \right)  \\
+                          =& e^{-rn} * \left[P\left(Sn \geqslant K \right) + P\left(Sn < K \right) \right]  \\
+                          =& e^{-rn} * 1  \\
+                          =& e^{-rn}  \\
+  \end{aligned}
+\end{equation}  
+
+# Question 6  
+
+The stock price tree and payoffs of the option are given in the following table:  
+  
+  
+|n=0          | n=1          | n=2               | n=3                   | n=4                     | Payoffs
+|---          | ---          | ---               | ---                   | ---                     | ---  
+|             |              |                   |                       | $S_{u^4} = 146.484375$  | 0
+|             |              |                   | $S_{u^3} = 117.1875$  |                         | 0
+|             |              | $S_{u^2} = 93.75$ |                       | $S_{u^3d} = 93.75$      | 0
+|             | $S_{u} = 75$ |                   | $S_{u^2d} = 75$       |                         | 0
+|$S_{0} = 60$ |              | $S_{ud} = 60$     |                       | $S_{u^2d^2} = 60$       | 0
+|             | $S_{d} = 48$ |                   | $S_{ud^2} = 48$       |                         | 0
+|             |              | $S_{d^2} = 38.4$  |                       | $S_{ud^3} = 38.4$       | $59 - 38.04 = 20.6$
+|             |              |                   | $S_{d^3} = 30.72$     |                         | 0
+|             |              |                   |                       | $S_{ud^4} = 24.576$     | $59 - 24.576 = 34.424$
+  
+
+Then we obtain $p^* = \frac{1+r-d}{u-d} = .555555556$.  
+
+## First method: "Path counting"  
+
+The price is given by:  
+
+\begin{equation}
+  \begin{aligned}
+    \Pi_0 =& \frac{1}{(1+r)^4} * E_{*}(Payoff)  \\
+          =& \frac{1}{(1+r)^4} * \left[ 
+                                  \begin{matrix}
+                                        20.6 * P_{*}(\text{Stock achieve price 38.4 after dipping below 35}) + \qquad\qquad\qquad\\
+                                        34.424 * P_{*}(\text{Stock achieve price 24.576 after dipping below 35}) \\
+                                  \end{matrix}
+                                 \right]  \\
+          =& \frac{1}{(1+r)^4} * \left[ 
+                                  \begin{matrix}
+                                        20.6 * P_{*}(\text{Stock goes up once, goes down 3 times, and dip below 35 at least once}) +         \qquad\qquad\qquad\quad\\
+                                        34.424 * P_{*}(\text{Stock does not goes up, goes down 4 times, and dip below 35 at least once}) \\
+                                  \end{matrix}
+                                 \right]  \\
+          =& \frac{1}{(1+r)^4} * \left[ 
+                                    \begin{matrix}
+                                        20.6 * p_{*}^3 * (1 - p_{*})^1 * P_{*}(\text{Number of good paths from (0,-3) to (4,-1)}) + \qquad\qquad\qquad\quad\\
+                                        34.424 * p_{*}^0 * (1 - p_{*})^4 * P_{*}(\text{Number of good paths from (0,-3) to (4,1)}) \\
+                                    \end{matrix}
+                                  \right]  \\
+          =& \frac{1}{(1+r)^4} * \left[ 
+                                    \begin{matrix}
+                                        20.6 * p_{*}^3 * (1 - p_{*})^1 * G_4(-3,-1) + \qquad\qquad\qquad\quad\\
+                                        34.424 * p_{*}^0 * (1 - p_{*})^4 * G_4(-3,1)) \\
+                                    \end{matrix}
+                                  \right]  \\
+          =& \frac{1}{(1+r)^4} * \left[ 
+                                    \begin{matrix}
+                                        20.6 * p_{*}^3 * (1 - p_{*})^1 * [N_4(-3,-1) - N_4(3,-1)] + \qquad\qquad\qquad\quad\\
+                                        34.424 * p_{*}^0 * (1 - p_{*})^4 * [N_4(-3,1) - N_4(3,1)] \\
+                                    \end{matrix}
+                                  \right]  \\
+          =& \frac{1}{(1+r)^4} * \left[ 
+                                    \begin{matrix}
+                                        20.6 * p_{*}^3 * (1 - p_{*})^1 * [{4 \choose \frac{4-3+1}{2}} - {4 \choose \frac{4+3+1}{2}}] + \qquad\qquad\qquad\quad\\
+                                        34.424 * p_{*}^0 * (1 - p_{*})^4 * [{4 \choose \frac{4-3-1}{2}} - {4 \choose \frac{4+3-1}{2}}] \\
+                                    \end{matrix}
+                                  \right]  \\
+          =& \frac{1}{(1+.05)^4} * \left[ 
+                                    \begin{matrix}
+                                        20.6 * .555555556^3 * (1 - .555555556)^1 * [{4 \choose \frac{4-3+1}{2}} - {4 \choose \frac{4+3+1}{2}}] + \qquad\qquad\qquad\quad\\
+                                        34.424 * .555555556^0 * (1 - .555555556)^4 * [{4 \choose \frac{4-3-1}{2}} - {4 \choose \frac{4+3-1}{2}}] \\
+                                    \end{matrix}
+                                  \right]  \\
+          =& 4.411388601\\
+  \end{aligned}
+\end{equation} 
+  
+## Second method: Backward recursive  
+
+The option price tree is given by:  
+
+  
+| n=0                     | n=1                     | n=2                      | n=3                       | n=4             
+| ---                     | ---                     | ---                      | ---                       | ---             
+|                         |                         |                          |                           | $\Pi_{u^4} = 0$ 
+|                         |                         |                          | $\Pi_{u^3} = 0$           |                  
+|                         |                         | $\Pi_{u^2} = 0$          |                           | $\Pi_{u^3d} = 0$
+|                         | $\Pi_{u} = 1.562254444$ |                          | $\Pi_{u^2d} = 0$          |                     
+| $\Pi_{0} = 4.411388601$ |                         | $\Pi_{ud} = 3.690826125$ |                           | $\Pi_{u^2d^2} = 0$  
+|                         | $\Pi_{d} = 8.469087516$ |                          | $\Pi_{ud^2} = 8.71957672$ |                     
+|                         |                         | $\Pi_{d^2} = 15.3946866$ |                           | $\Pi_{ud^3} = 20.6$
+|                         |                         |                          | $\Pi_{d^3} = 25.47047619$ |                      
+|                         |                         |                          |                           | $\Pi_{ud^4} = 34.424$  
+    
+Hi
+
