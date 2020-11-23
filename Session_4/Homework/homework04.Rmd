@@ -425,3 +425,113 @@ The option price tree is given by the tree below:
 |                         |                         |                          |                           | $\Pi_{d^4} = 34.424$  
   
 Thus, the price of the option is $\Pi_{0} = 4.411388601$.  
+
+# **Question 10**   
+
+## Price an up-and-out call option.
+
+Based on the lecture, the price is given by:  
+
+\begin{equation}
+  \begin{aligned}
+    \Pi_0 =& \frac{1}{(1+r)^n} * E_{*} \left[ (S_n - K)^{+} * 1_{S_n^{*} < B} \right]  \\
+          =& \frac{1}{(1+r)^n} * \sum\limits_{b: K < b < B} (b-K) * P_{*} \left( S_n^* < B, S_n = b \right)  \\
+          =& \frac{1}{(1+r)^n} * \sum\limits_{b: K < b < B} (b-K) * P_{*} \left( W_n^* < \frac{lnB - lnS}{lnu}, W_n = \frac{lnb - lnS}{lnu} \right) \\
+  \end{aligned}
+\end{equation} 
+
+With the specific case $u=1.25, d=.8, S=60, r=.05, n=4, K=90, B=115$:  
+
+  
+|n=0          | n=1          | n=2               | n=3                   | n=4                     | Payoffs
+|---          | ---          | ---               | ---                   | ---                     | ---  
+|             |              |                   |                       | $S_{u^4} = 146.484375$  | 0
+|             |              |                   | $S_{u^3} = 117.1875$  |                         | 
+|             |              | $S_{u^2} = 93.75$ |                       | $S_{u^3d} = 93.75$      | $93.75 - 90 = 3.75$
+|             | $S_{u} = 75$ |                   | $S_{u^2d} = 75$       |                         | 
+|$S_{0} = 60$ |              | $S_{ud} = 60$     |                       | $S_{u^2d^2} = 60$       | 0
+|             | $S_{d} = 48$ |                   | $S_{ud^2} = 48$       |                         | 
+|             |              | $S_{d^2} = 38.4$  |                       | $S_{ud^3} = 38.4$       | 0
+|             |              |                   | $S_{d^3} = 30.72$     |                         | 
+|             |              |                   |                       | $S_{d^4} = 24.576$      | 0
+
+The corresponded option table is:    
+
+  
+| n=0                    | n=1                   | n=2                      | n=3                       | n=4             
+| ---                    | ---                   | ---                      | ---                       | ---             
+|                        |                       |                          |                           | $\Pi_{u^4} = 0$ 
+|                        |                       |                          | $\Pi_{u^3} = 0$           |                  
+|                        |                       | $\Pi_{u^2} = .83984211$  |                           | $\Pi_{u^3d} = 3.75$
+|                        | $\Pi_{u} = .888721809$|                          | $\Pi_{u^2d} = 1.984126984$|                     
+| $\Pi_{0} = .705334769$ |                       | $\Pi_{ud} = 1.049802637$ |                           | $\Pi_{u^2d^2} = 0$  
+|                        | $\Pi_{d} = .55545113$ |                          | $\Pi_{ud^2} = 0$          |                     
+|                        |                       | $\Pi_{d^2} = 0$          |                           | $\Pi_{ud^3} = 0$
+|                        |                       |                          | $\Pi_{d^3} = 0$           |                      
+|                        |                       |                          |                           | $\Pi_{d^4} = 0$  
+  
+Thus, the price of the option is $\Pi_{0} = .705334769$.  
+
+## Price an up-and-out call with K=59, B=90  
+
+We have the pay-offs table as follow. Note that the option in knocked-out if the underlying goes above $B=90$ and also expire worthless if the underlying price at time $n=4$ is below $K=59$  
+  
+|n=0          | n=1          | n=2               | n=3                   | n=4                     | Payoffs
+|---          | ---          | ---               | ---                   | ---                     | ---  
+|             |              |                   |                       | $S_{u^4} = 146.484375$  | 0
+|             |              |                   | $S_{u^3} = 117.1875$  |                         | 
+|             |              | $S_{u^2} = 93.75$ |                       | $S_{u^3d} = 93.75$      | 0
+|             | $S_{u} = 75$ |                   | $S_{u^2d} = 75$       |                         | 
+|$S_{0} = 60$ |              | $S_{ud} = 60$     |                       | $S_{u^2d^2} = 60$       | $60 -59 = 1$
+|             | $S_{d} = 48$ |                   | $S_{ud^2} = 48$       |                         | 
+|             |              | $S_{d^2} = 38.4$  |                       | $S_{ud^3} = 38.4$       | 0
+|             |              |                   | $S_{d^3} = 30.72$     |                         | 
+|             |              |                   |                       | $S_{d^4} = 24.576$      | 0
+  
+Recall $p^* = \frac{1+r-d}{u-d} = \frac{5}{9}$.  
+
+Using backwards recursion:  
+
+\begin{equation}
+  \begin{aligned}
+    \text{At time} \, n=4:  \\
+    \Pi_{u^4} =& 0 \, \text{knocked out}  \\
+    \Pi_{u^3d} =& 0 \, \text{knocked out}  \\
+    \Pi_{u^2d^2} =& (60 - 59)^+ = 1 \\
+    \Pi_{ud^3} =& (38.4 - 59)^+ = 0 \\
+    \Pi_{d^4} =& (24.576 - 59)^+ = 0 \\
+    \text{At time} \, n=3:  \\
+    \Pi_{u^3} =& \frac{1}{1+r} * (\Pi_{u^4}*p^{*} + \Pi_{u^3d}*(1-p^{*})) = 0 \\
+    \Pi_{u^2d} =& \frac{1}{1+r} * (\Pi_{u^3d}*p^{*} + \Pi_{u^2d^2}*(1-p^{*})) = .4232804 \\
+    \Pi_{ud^2} =& \frac{1}{1+r} * (\Pi_{u^2d^2}*p^{*} + \Pi_{ud^3}*(1-p^{*})) = .5291005 \\
+    \Pi_{d^3} =& \frac{1}{1+r} * (\Pi_{ud^3}*p^{*} + \Pi_{d^4}*(1-p^{*})) = 0 \\
+    \text{At time} \, n=2:  \\
+    \Pi_{u^2} =& \frac{1}{1+r} * (\Pi_{u^3}*p^{*} + \Pi_{u^2d}*(1-p^{*})) = 0 \\
+    \Pi_{ud} =& \frac{1}{1+r} * (\Pi_{u^2d}*p^{*} + \Pi_{ud^2}*(1-p^{*})) = .4479158 \\
+    \Pi_{d^2} =& \frac{1}{1+r} * (\Pi_{ud^2}*p^{*} + \Pi_{d^3}*(1-p^{*})) = .2799474 \\
+    \text{At time} \, n=1:  \\
+    \Pi_{u} =& \frac{1}{1+r} * (\Pi_{u^2}*p^{*} + \Pi_{ud}*(1-p^{*})) = .189594 \\
+    \Pi_{d} =& \frac{1}{1+r} * (\Pi_{ud}*p^{*} + \Pi_{d^2}*(1-p^{*})) = .3554887 \\
+    \text{At time} \, n=0:  \\
+    \Pi_{0} =& \frac{1}{1+r} * (\Pi_{u}*p^{*} + \Pi_{d}*(1-p^{*})) = .2507857 \\
+  \end{aligned}
+\end{equation} 
+
+The option price tree is given by the tree below:     
+
+  
+| n=0                  | n=1                  | n=2                    | n=3                     | n=4             
+| ---                  | ---                  | ---                    | ---                     | ---             
+|                      |                      |                        |                         | $\Pi_{u^4} = 0$ 
+|                      |                      |                        | $\Pi_{u^3} = 0$         |                  
+|                      |                      | $\Pi_{u^2} = 0$        |                         | $\Pi_{u^3d} = 0$
+|                      | $\Pi_{u} = .189594$  |                        | $\Pi_{u^2d} = .4232804$ |                     
+| $\Pi_{0} = .2507857$ |                      | $\Pi_{ud} = .4479158$  |                         | $\Pi_{u^2d^2} = 1$  
+|                      | $\Pi_{d} = .3554887$ |                        | $\Pi_{ud^2} = .5291005$ |                     
+|                      |                      | $\Pi_{d^2} = .2799474$ |                         | $\Pi_{ud^3} = 0$
+|                      |                      |                        | $\Pi_{d^3} = 0$         |                      
+|                      |                      |                        |                         | $\Pi_{d^4} = 0$  
+  
+Thus, the price of the option is $\Pi_{0} = .2507857$.  
+
+
