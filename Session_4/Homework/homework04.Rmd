@@ -40,9 +40,9 @@ Thus, rewrite in desirable term:
 
 \begin{equation}
   \begin{aligned}
-    \Pi_0 =& \frac{1}{(1+r)^n} \sum_{k=0}^{n} (S(n) - K)^+ {n \choose k} \Big(\frac{1+r-d}{u-d}\Big)^k \Big(\frac{u-1-r}{u-d}\Big)^{n-k}  \\
+    \Pi_0 =& \frac{1}{(1+r)^n} \sum_{k=0}^{n} (S(n) - K)^+ *{n \choose k} \Big(\frac{1+r-d}{u-d}\Big)^k \Big(\frac{u-1-r}{u-d}\Big)^{n-k}  \\
     \text{or} &  \\
-    \Pi_0 =& \frac{1}{(1+r)^n} \sum_{k=0}^{n} (S(0)u^k d^{n-k} - K)^+ {n \choose k} \Big(\frac{1+r-d}{u-d}\Big)^k \Big(\frac{u-1-r}{u-d}\Big)^{n-k}  \\
+    \Pi_0 =& \frac{1}{(1+r)^n} \sum_{k=0}^{n} (S(0)u^k d^{n-k} - K)^+ *{n \choose k} \Big(\frac{1+r-d}{u-d}\Big)^k \Big(\frac{u-1-r}{u-d}\Big)^{n-k}  \\
   \end{aligned}
 \end{equation}  
 
@@ -54,7 +54,7 @@ We have:
 
 \begin{equation}
   \begin{aligned}
-    \Pi_0 =& \frac{1}{(1+r)^n} \sum_{k=0}^{n} (K - S(0)u^k d^{n-k})^+ {n \choose k} \Big(\frac{1+r-d}{u-d}\Big)^k \Big(\frac{u-1-r}{u-d}\Big)^{n-k}  \\
+    \Pi_0 =& \frac{1}{(1+r)^n} \sum_{k=0}^{n} (K - S(0)u^k d^{n-k})^+ *{n \choose k} \Big(\frac{1+r-d}{u-d}\Big)^k \Big(\frac{u-1-r}{u-d}\Big)^{n-k}  \\
   \end{aligned}
 \end{equation}  
 
@@ -139,13 +139,13 @@ The stock price tree and payoffs of the option are given in the following tree:
 |n=0          | n=1          | n=2               | n=3                   | n=4                     | Payoffs
 |---          | ---          | ---               | ---                   | ---                     | ---  
 |             |              |                   |                       | $S_{u^4} = 146.484375$  | 0
-|             |              |                   | $S_{u^3} = 117.1875$  |                         | 0
+|             |              |                   | $S_{u^3} = 117.1875$  |                         | 
 |             |              | $S_{u^2} = 93.75$ |                       | $S_{u^3d} = 93.75$      | 0
-|             | $S_{u} = 75$ |                   | $S_{u^2d} = 75$       |                         | 0
+|             | $S_{u} = 75$ |                   | $S_{u^2d} = 75$       |                         | 
 |$S_{0} = 60$ |              | $S_{ud} = 60$     |                       | $S_{u^2d^2} = 60$       | 0
-|             | $S_{d} = 48$ |                   | $S_{ud^2} = 48$       |                         | 0
+|             | $S_{d} = 48$ |                   | $S_{ud^2} = 48$       |                         | 
 |             |              | $S_{d^2} = 38.4$  |                       | $S_{ud^3} = 38.4$       | $59 - 38.04 = 20.6$
-|             |              |                   | $S_{d^3} = 30.72$     |                         | 0
+|             |              |                   | $S_{d^3} = 30.72$     |                         | 
 |             |              |                   |                       | $S_{d^4} = 24.576$      | $59 - 24.576 = 34.424$
   
 
@@ -172,41 +172,215 @@ The price is given by:
                                  \right]  \\
           =& \frac{1}{(1+r)^4} * \left[ 
                                     \begin{matrix}
-                                        20.6 * p_{*}^1 * (1 - p_{*})^3 * P_{*}(\text{Number of good paths from (0,-3) to (4,-1)}) + \qquad\qquad\qquad\quad\\
-                                        34.424 * p_{*}^0 * (1 - p_{*})^4 * P_{*}(\text{Number of good paths from (0,-3) to (4,1)}) \\
+                                        20.6 * p_{*}^1 * (1 - p_{*})^3 * P_{*}(\text{Number of good paths from (0,-1) to (4,1)}) + \qquad\qquad\qquad\quad\\
+                                        34.424 * p_{*}^0 * (1 - p_{*})^4 * P_{*}(\text{Number of good paths from (0,-1) to (4,3)}) \\
                                     \end{matrix}
                                   \right]  \\
           =& \frac{1}{(1+r)^4} * \left[ 
                                     \begin{matrix}
-                                        20.6 * p_{*}^1 * (1 - p_{*})^3 * G_4(-3,-1) + \qquad\qquad\qquad\quad\\
-                                        34.424 * p_{*}^0 * (1 - p_{*})^4 * G_4(-3,1)) \\
+                                        20.6 * p_{*}^1 * (1 - p_{*})^3 * G_4(1,1) + \qquad\qquad\qquad\quad\\
+                                        34.424 * p_{*}^0 * (1 - p_{*})^4 * G_4(1,3)) \\
                                     \end{matrix}
                                   \right]  \\
           =& \frac{1}{(1+r)^4} * \left[ 
                                     \begin{matrix}
-                                        20.6 * p_{*}^1 * (1 - p_{*})^3 * [N_4(-3,-1) - N_4(3,-1)] + \qquad\qquad\qquad\quad\\
-                                        34.424 * p_{*}^0 * (1 - p_{*})^4 * [N_4(-3,1) - N_4(3,1)] \\
+                                        20.6 * p_{*}^1 * (1 - p_{*})^3 * [N_4(1,1) - N_4(-1,1)] + \qquad\qquad\qquad\quad\\
+                                        34.424 * p_{*}^0 * (1 - p_{*})^4 * [N_4(1,3) - N_4(-1,3)] \\
                                     \end{matrix}
                                   \right]  \\
-          =& \frac{1}{(1+r)^4} * \left[ 
-                                    \begin{matrix}
-                                        20.6 * p_{*}^1 * (1 - p_{*})^3 * [{4 \choose \frac{4-3+1}{2}} - {4 \choose \frac{4+3+1}{2}}] + \qquad\qquad\qquad\quad\\
-                                        34.424 * p_{*}^0 * (1 - p_{*})^4 * [{4 \choose \frac{4-3-1}{2}} - {4 \choose \frac{4+3-1}{2}}] \\
-                                    \end{matrix}
-                                  \right]  \\
-          =& \frac{1}{(1+.05)^4} * \left[ 
-                                    \begin{matrix}
-                                        20.6 * .555555556^1 * (1 - .555555556)^3 * [{4 \choose \frac{4-3+1}{2}} - {4 \choose \frac{4+3+1}{2}}] + \qquad\qquad\qquad\quad\\
-                                        34.424 * .555555556^0 * (1 - .555555556)^4 * [{4 \choose \frac{4-3-1}{2}} - {4 \choose \frac{4+3-1}{2}}] \\
-                                    \end{matrix}
-                                  \right]  \\
-          =& 4.411388601\\
+          =& 1.931619\\
   \end{aligned}
 \end{equation} 
 
-Thus, the price of the option is $\Pi_{0} = 4.411388601$.  
+Thus, the price of the option is $\Pi_{0} = 1.931619$.  
 
 ## Second method: Backward recursive  
+
+Calculations:  
+
+\begin{equation}
+  \begin{aligned}
+    \text{At time} \, n=4:  \\
+    \Pi_{u^4} =& (59 - 146.484375)^+ = 0 \\
+    \Pi_{u^3d} =& (59 - 93.75)^+ = 0 \\
+    \Pi_{u^2d^2} =& (59 - 60)^+ = 0 \\
+    \Pi_{ud^3} =& (59 - 38.4)^+ = 20.6 \\
+    \Pi_{d^4} =& (59 - 24.576)^+ = 34.424 \\
+    \text{At time} \, n=3:  \\
+    \Pi_{u^3} =& \frac{1}{1+r} * (\Pi_{u^4}*p^{*} + \Pi_{u^3d}*(1-p^{*})) = 0 \\
+    \Pi_{u^2d} =& \frac{1}{1+r} * (\Pi_{u^3d}*p^{*} + \Pi_{u^2d^2}*(1-p^{*})) = 0 \\
+    \Pi_{ud^2} =& 0 \, \text{because at this node, the option would have not hit the barrier and therefore, worthless} \\
+    \Pi_{d^3} =& \frac{1}{1+r} * (\Pi_{ud^3}*p^{*} + \Pi_{d^4}*(1-p^{*})) = 25.47047619 \\
+    \text{At time} \, n=2:  \\
+    \Pi_{u^2} =& \frac{1}{1+r} * (\Pi_{u^3}*p^{*} + \Pi_{u^2d}*(1-p^{*})) = 0 \\
+    \Pi_{ud} =& \frac{1}{1+r} * (\Pi_{u^2d}*p^{*} + \Pi_{ud^2}*(1-p^{*})) = 0 \\
+    \Pi_{d^2} =& \frac{1}{1+r} * (\Pi_{ud^2}*p^{*} + \Pi_{d^3}*(1-p^{*})) = 10.78115 \\
+    \text{At time} \, n=1:  \\
+    \Pi_{u} =& \frac{1}{1+r} * (\Pi_{u^2}*p^{*} + \Pi_{ud}*(1-p^{*})) = 0 \\
+    \Pi_{d} =& \frac{1}{1+r} * (\Pi_{ud}*p^{*} + \Pi_{d^2}*(1-p^{*})) = 4.56345 \\
+    \text{At time} \, n=0:  \\
+    \Pi_{0} =& \frac{1}{1+r} * (\Pi_{u}*p^{*} + \Pi_{d}*(1-p^{*})) = 1.931619 \\
+  \end{aligned}
+\end{equation} 
+
+The option price tree is given by the tree below:     
+
+  
+| n=0                     | n=1                     | n=2                      | n=3                       | n=4             
+| ---                     | ---                     | ---                      | ---                       | ---             
+|                         |                         |                          |                           | $\Pi_{u^4} = 0$ 
+|                         |                         |                          | $\Pi_{u^3} = 0$           |                  
+|                         |                         | $\Pi_{u^2} = 0$          |                           | $\Pi_{u^3d} = 0$
+|                         | $\Pi_{u} = 0$           |                          | $\Pi_{u^2d} = 0$          |                     
+| $\Pi_{0} = 1.931619$    |                         | $\Pi_{ud} = 0$           |                           | $\Pi_{u^2d^2} = 0$  
+|                         | $\Pi_{d} = 4.56345$     |                          | $\Pi_{ud^2} = 0$          |                     
+|                         |                         | $\Pi_{d^2} = 10.78115$   |                           | $\Pi_{ud^3} = 20.6$
+|                         |                         |                          | $\Pi_{d^3} = 25.47047619$ |                      
+|                         |                         |                          |                           | $\Pi_{d^4} = 34.424$  
+  
+Thus, the price of the option is $\Pi_{0} = 1.931619$.  
+
+# **Question 7**   
+
+Recall: The stock price tree and payoffs of the option are given in the following tree:  
+  
+  
+|n=0          | n=1          | n=2               | n=3                   | n=4                     | Payoffs
+|---          | ---          | ---               | ---                   | ---                     | ---  
+|             |              |                   |                       | $S_{u^4} = 146.484375$  | 0
+|             |              |                   | $S_{u^3} = 117.1875$  |                         | 
+|             |              | $S_{u^2} = 93.75$ |                       | $S_{u^3d} = 93.75$      | 0
+|             | $S_{u} = 75$ |                   | $S_{u^2d} = 75$       |                         | 
+|$S_{0} = 60$ |              | $S_{ud} = 60$     |                       | $S_{u^2d^2} = 60$       | 0
+|             | $S_{d} = 48$ |                   | $S_{ud^2} = 48$       |                         | 
+|             |              | $S_{d^2} = 38.4$  |                       | $S_{ud^3} = 38.4$       | $59 - 38.04 = 20.6$
+|             |              |                   | $S_{d^3} = 30.72$     |                         | 
+|             |              |                   |                       | $S_{d^4} = 24.576$      | $59 - 24.576 = 34.424$
+  
+
+Then we obtain $p^* = \frac{1+r-d}{u-d} = .555555556$.  
+
+Using backward induction and take into account early exercise:  
+
+The American option price tree is given by:  
+
+  
+| n=0       | n=1       | n=2             | n=3                       | n=4             
+| ---       | ---       | ---             | ---                       | ---             
+|           |           |                 |                           | $\Pi_{u^4} = 0$ 
+|           |           |                 | $\Pi_{u^3} = 0$           |                  
+|           |           | $\Pi_{u^2} = 0$ |                           | $\Pi_{u^3d} = 0$
+|           | $\Pi_{u}$ |                 | $\Pi_{u^2d} = 0$          |                     
+| $\Pi_{0}$ |           | $\Pi_{ud}$      |                           | $\Pi_{u^2d^2} = 0$  
+|           | $\Pi_{d}$ |                 | $\Pi_{ud^2}$              |                     
+|           |           | $\Pi_{d^2}$     |                           | $\Pi_{ud^3} = 20.6$
+|           |           |                 | $\Pi_{d^3}$               |                      
+|           |           |                 |                           | $\Pi_{d^4} = 34.424$  
+  
+\begin{equation}
+  \begin{aligned}
+    \text{At time} \, n=4:  \\
+    \Pi_{u^4, US} =& (59 - 146.484375)^+ = 0 \\
+    \Pi_{u^3d, US} =& (59 - 93.75)^+ = 0 \\
+    \Pi_{u^2d^2, US} =& (59 - 60)^+ = 0 \\
+    \Pi_{ud^3, US} =& (59 - 38.4)^+ = 20.6 \\
+    \Pi_{d^4, US} =& (59 - 24.576)^+ = 34.424 \\
+    \text{At time} \, n=3:  \\
+    \Pi_{u^3, US} =& \frac{1}{1+r} * (\Pi_{u^4}*p^{*} + \Pi_{u^3d}*(1-p^{*})) = 0 \\
+    \Pi_{u^2d, US} =& \frac{1}{1+r} * (\Pi_{u^3d}*p^{*} + \Pi_{u^2d^2}*(1-p^{*})) = 0 \\
+    \Pi_{ud^2, EU} =& \frac{1}{1+r} * (\Pi_{u^2d^2}*p^{*} + \Pi_{ud^3}*(1-p^{*})) = 8.71957672 \\
+    \text{Early exercise payoff} \, V_{ud^2} =& (59 - 48)^+ = 11 \\
+    \text{Thus, under no-arbitrage:} \, \Pi_{ud^2, US} =& 11  \\
+    \Pi_{d^3, EU} =& \frac{1}{1+r} * (\Pi_{ud^3}*p^{*} + \Pi_{d^4}*(1-p^{*})) = 25.47047619 \\
+    \text{Early exercise payoff} \, V_{d^3} =& (59 - 30.72)^+ = 28.28 \\
+    \text{Thus, under no-arbitrage:} \, \Pi_{d^3, US} =& 28.28  \\
+    \text{At time} \, n=2:  \\
+    \Pi_{u^2} =& \frac{1}{1+r} * (\Pi_{u^3}*p^{*} + \Pi_{u^2d}*(1-p^{*})) = 0 \\
+    \Pi_{ud, EU} =& \frac{1}{1+r} * (\Pi_{u^2d}*p^{*} + \Pi_{ud^2}*(1-p^{*})) = 4.656085 \\
+    \text{Early exercise payoff} \, V_{ud} =& (59 - 90)^+ = 0 \\
+    \text{Thus, under no-arbitrage:} \, \Pi_{ud, US} =& 4.656085  \\
+    \Pi_{d^2, EU} =& \frac{1}{1+r} * (\Pi_{ud^2}*p^{*} + \Pi_{d^3}*(1-p^{*})) = 17.79048 \\
+    \text{Early exercise payoff} \, V_{d^2} =& (59 - 38.4)^+ = 20.6 \\
+    \text{Thus, under no-arbitrage:} \, \Pi_{d^2, US} =& 20.6  \\
+    \text{At time} \, `n=1:  \\
+    \Pi_{u, EU} =& \frac{1}{1+r} * (\Pi_{u^2}*p^{*} + \Pi_{ud}*(1-p^{*})) = 1.97083 \\
+    \text{Early exercise payoff} \, V_{u} =& (59 - 75)^+ = 0 \\
+    \text{Thus, under no-arbitrage:} \, \Pi_{u, US} =& 1.97083  \\
+    \Pi_{d, EU} =& \frac{1}{1+r} * (\Pi_{ud}*p^{*} + \Pi_{d^2}*(1-p^{*})) = 11.18311 \\
+    \text{Early exercise payoff} \, V_{d} =& (59 - 48)^+ = 11 \\
+    \text{Thus, under no-arbitrage:} \, \Pi_{u, US} =& 11.18311  \\
+    \text{At time} \, n=0:  \\
+    \Pi_{0} =& \frac{1}{1+r} * (\Pi_{u}*p^{*} + \Pi_{d}*(1-p^{*})) = 5.776359 \\
+  \end{aligned}
+\end{equation}  
+
+The American option price tree is given by:  
+
+  
+| n=0                  | n=1                  | n=2                   | n=3                 | n=4             
+| ---                  | ---                  | ---                   | ---                 | ---             
+|                      |                      |                       |                     | $\Pi_{u^4} = 0$ 
+|                      |                      |                       | $\Pi_{u^3} = 0$     |                  
+|                      |                      | $\Pi_{u^2} = 0$       |                     | $\Pi_{u^3d} = 0$
+|                      | $\Pi_{u} = 1.97083$  |                       | $\Pi_{u^2d} = 0$    |                     
+| $\Pi_{0} = 5.776359$ |                      | $\Pi_{ud} = 4.656085$ |                     | $\Pi_{u^2d^2} = 0$  
+|                      | $\Pi_{d} = 11.18311$ |                       | $\Pi_{ud^2} = 11$   |                     
+|                      |                      | $\Pi_{d^2} = 20.6$    |                     | $\Pi_{ud^3} = 20.6$
+|                      |                      |                       | $\Pi_{d^3} = 28.28$ |                      
+|                      |                      |                       |                     | $\Pi_{d^4} = 34.424$  
+  
+Thus, the price of the option is $\Pi_{0} = 5.776359$.  
+
+# **Question 8**   
+
+## Using Exercise 2 formula:  
+
+From exercise 2, we have:  
+
+\begin{equation}
+  \begin{aligned}
+    \Pi_0 =& \frac{1}{(1+r)^n} \sum_{k=0}^{n} (K - S(0)u^k d^{n-k})^+ {n \choose k} \Big(\frac{1+r-d}{u-d}\Big)^k \Big(\frac{u-1-r}{u-d}\Big)^{n-k}  \\
+  \end{aligned}
+\end{equation}  
+
+Plug in: $r=.05, n=4, K=59, S(0)=60, u=1.25, d=.8$.  
+
+In addtion: $\frac{1+r-d}{u-d} = \frac{1+.5-.8}{1.25-.8} = \frac{5}{9}$, and $\frac{u-1-r}{u-d} = 1 - \frac{5}{9} = \frac{4}{9}$.  
+
+Thus:  
+\begin{equation}
+  \begin{aligned}
+    \Pi_0 =& \frac{1}{(1+r)^n} \sum_{k=0}^{n} (K - S(0)u^k d^{n-k})^+ *{n \choose k} \Big(\frac{1+r-d}{u-d}\Big)^k \Big(\frac{u-1-r}{u-d}\Big)^{n-k}  \\
+          =& \frac{1}{(1+.05)^4} \sum_{k=0}^{4} (59 - 60*1.25^k*.8^{n-k})^+ *{4 \choose k} \Big(\frac{5}{9}\Big)^k \Big(\frac{4}{9}\Big)^{4-k}  \\
+          =& \frac{1}{1.05^4} * \left[ 
+                                \begin{matrix}
+                                  (59 - 60*1.25^0*.8^4)^+ *{4 \choose 0} \Big(\frac{5}{9}\Big)^0 \Big(\frac{4}{9}\Big)^4  + \\
+                                  (59 - 60*1.25^1*.8^3)^+ *{4 \choose 1} \Big(\frac{5}{9}\Big)^1 \Big(\frac{4}{9}\Big)^3  + \\
+                                  (59 - 60*1.25^2*.8^2)^+ *{4 \choose 2} \Big(\frac{5}{9}\Big)^2 \Big(\frac{4}{9}\Big)^2  + \\
+                                  (59 - 60*1.25^3*.8^1)^+ *{4 \choose 3} \Big(\frac{5}{9}\Big)^3 \Big(\frac{4}{9}\Big)^1  + \\
+                                  (59 - 60*1.25^4*.8^0)^+ *{4 \choose 4} \Big(\frac{5}{9}\Big)^4 \Big(\frac{4}{9}\Big)^0 \\
+                                \end{matrix}
+                                \right]  \\
+          =& \frac{1}{1.05^4} * \left[ 
+                                  \begin{matrix}
+                                    34.24 *{4 \choose 0} \Big(\frac{5}{9}\Big)^0 \Big(\frac{4}{9}\Big)^4  + \\
+                                    20.6 *{4 \choose 1} \Big(\frac{5}{9}\Big)^1 \Big(\frac{4}{9}\Big)^3  + \\
+                                    0 *{4 \choose 2} \Big(\frac{5}{9}\Big)^2 \Big(\frac{4}{9}\Big)^2  + \\
+                                    0 *{4 \choose 3} \Big(\frac{5}{9}\Big)^3 \Big(\frac{4}{9}\Big)^1  + \\
+                                    0 *{4 \choose 4} \Big(\frac{5}{9}\Big)^4 \Big(\frac{4}{9}\Big)^0 \\
+                                  \end{matrix}
+                                  \right]  \\
+          =& \frac{1}{1.05^4} * \left[ 
+                                  \begin{matrix}
+                                    34.24 * 1 * 1 * \Big(\frac{256}{6561}\Big)  + \\
+                                    20.6 * 4 * \Big(\frac{5}{9}\Big) * \Big(\frac{64}{729}\Big)  \\
+                                  \end{matrix}
+                                  \right]  \\
+          =& 4.411388601  \\
+  \end{aligned}
+\end{equation}  
+
+## Using Method 2: Backward Recursion    
 
 Calculations:  
 
@@ -251,96 +425,3 @@ The option price tree is given by the tree below:
 |                         |                         |                          |                           | $\Pi_{d^4} = 34.424$  
   
 Thus, the price of the option is $\Pi_{0} = 4.411388601$.  
-
-# **Question 7**   
-
-Recall: The stock price tree and payoffs of the option are given in the following tree:  
-  
-  
-|n=0          | n=1          | n=2               | n=3                   | n=4                     | Payoffs
-|---          | ---          | ---               | ---                   | ---                     | ---  
-|             |              |                   |                       | $S_{u^4} = 146.484375$  | 0
-|             |              |                   | $S_{u^3} = 117.1875$  |                         | 0
-|             |              | $S_{u^2} = 93.75$ |                       | $S_{u^3d} = 93.75$      | 0
-|             | $S_{u} = 75$ |                   | $S_{u^2d} = 75$       |                         | 0
-|$S_{0} = 60$ |              | $S_{ud} = 60$     |                       | $S_{u^2d^2} = 60$       | 0
-|             | $S_{d} = 48$ |                   | $S_{ud^2} = 48$       |                         | 0
-|             |              | $S_{d^2} = 38.4$  |                       | $S_{ud^3} = 38.4$       | $59 - 38.04 = 20.6$
-|             |              |                   | $S_{d^3} = 30.72$     |                         | 0
-|             |              |                   |                       | $S_{d^4} = 24.576$      | $59 - 24.576 = 34.424$
-  
-
-Then we obtain $p^* = \frac{1+r-d}{u-d} = .555555556$.  
-
-Using backward induction and take into account early exercise:  
-
-The American option price tree is given by:  
-
-  
-| n=0       | n=1       | n=2             | n=3                       | n=4             
-| ---       | ---       | ---             | ---                       | ---             
-|           |           |                 |                           | $\Pi_{u^4} = 0$ 
-|           |           |                 | $\Pi_{u^3} = 0$           |                  
-|           |           | $\Pi_{u^2} = 0$ |                           | $\Pi_{u^3d} = 0$
-|           | $\Pi_{u}$ |                 | $\Pi_{u^2d} = 0$          |                     
-| $\Pi_{0}$ |           | $\Pi_{ud}$      |                           | $\Pi_{u^2d^2} = 0$  
-|           | $\Pi_{d}$ |                 | $\Pi_{ud^2} = 8.71957672$ |                     
-|           |           | $\Pi_{d^2}$     |                           | $\Pi_{ud^3} = 20.6$
-|           |           |                 | $\Pi_{d^3} = 25.47047619$ |                      
-|           |           |                 |                           | $\Pi_{d^4} = 34.424$  
-  
-\begin{equation}
-  \begin{aligned}
-    \text{At time} \, n=4:  \\
-    \Pi_{u^4, US} =& (59 - 146.484375)^+ = 0 \\
-    \Pi_{u^3d, US} =& (59 - 93.75)^+ = 0 \\
-    \Pi_{u^2d^2, US} =& (59 - 60)^+ = 0 \\
-    \Pi_{ud^3, US} =& (59 - 38.4)^+ = 20.6 \\
-    \Pi_{d^4, US} =& (59 - 24.576)^+ = 34.424 \\
-    \text{At time} \, n=3:  \\
-    \Pi_{u^3, US} =& \frac{1}{1+r} * (\Pi_{u^4}*p^{*} + \Pi_{u^3d}*(1-p^{*})) = 0 \\
-    \Pi_{u^2d, US} =& \frac{1}{1+r} * (\Pi_{u^3d}*p^{*} + \Pi_{u^2d^2}*(1-p^{*})) = 0 \\
-    \Pi_{ud^2, EU} =& \frac{1}{1+r} * (\Pi_{u^2d^2}*p^{*} + \Pi_{ud^3}*(1-p^{*})) = 8.71957672 \\
-    \text{Early exercise payoff} \, V_{ud^2} =& (59 - 48)^+ = 11 \\
-    \text{Thus, under no-arbitrage:} \, \Pi_{ud^2, US} = 11  \\
-    \Pi_{d^3, EU} =& \frac{1}{1+r} * (\Pi_{ud^3}*p^{*} + \Pi_{d^4}*(1-p^{*})) = 25.47047619 \\
-    \text{Early exercise payoff} \, V_{d^3} =& (59 - 30.72)^+ = 28.28 \\
-    \text{Thus, under no-arbitrage:} \, \Pi_{d^3, US} = 28.28  \\
-    \text{At time} \, n=2:  \\
-    \Pi_{u^2} =& \frac{1}{1+r} * (\Pi_{u^3}*p^{*} + \Pi_{u^2d}*(1-p^{*})) = 0 \\
-    \Pi_{ud, EU} =& \frac{1}{1+r} * (\Pi_{u^2d}*p^{*} + \Pi_{ud^2}*(1-p^{*})) = 4.656085 \\
-    \text{Early exercise payoff} \, V_{ud} =& (59 - 90)^+ = 0 \\
-    \text{Thus, under no-arbitrage:} \, \Pi_{ud, US} = 4.656085  \\
-    \Pi_{d^2, EU} =& \frac{1}{1+r} * (\Pi_{ud^2}*p^{*} + \Pi_{d^3}*(1-p^{*})) = 17.79048 \\
-    \text{Early exercise payoff} \, V_{d^2} =& (59 - 38.4)^+ = 20.6 \\
-    \text{Thus, under no-arbitrage:} \, \Pi_{d^2, US} = 20.6  \\
-    \text{At time} \, n=1:  \\
-    \Pi_{u, EU} =& \frac{1}{1+r} * (\Pi_{u^2}*p^{*} + \Pi_{ud}*(1-p^{*})) = 1.97083 \\
-    \text{Early exercise payoff} \, V_{u} =& (59 - 75)^+ = 0 \\
-    \text{Thus, under no-arbitrage:} \, \Pi_{u, US} = 1.97083  \\
-    \Pi_{d, EU} =& \frac{1}{1+r} * (\Pi_{ud}*p^{*} + \Pi_{d^2}*(1-p^{*})) = 11.18311 \\
-    \text{Early exercise payoff} \, V_{d} =& (59 - 48)^+ = 11 \\
-    \text{Thus, under no-arbitrage:} \, \Pi_{u, US} = 11.18311  \\
-    \text{At time} \, n=0:  \\
-    \Pi_{0} =& \frac{1}{1+r} * (\Pi_{u}*p^{*} + \Pi_{d}*(1-p^{*})) = 5.776359 \\
-  \end{aligned}
-\end{equation}  
-
-The American option price tree is given by:  
-
-  
-| n=0                  | n=1                  | n=2                   | n=3                 | n=4             
-| ---                  | ---                  | ---                   | ---                 | ---             
-|                      |                      |                       |                     | $\Pi_{u^4} = 0$ 
-|                      |                      |                       | $\Pi_{u^3} = 0$     |                  
-|                      |                      | $\Pi_{u^2} = 0$       |                     | $\Pi_{u^3d} = 0$
-|                      | $\Pi_{u} = 1.97083$  |                       | $\Pi_{u^2d} = 0$    |                     
-| $\Pi_{0} = 5.776359$ |                      | $\Pi_{ud} = 4.656085$ |                     | $\Pi_{u^2d^2} = 0$  
-|                      | $\Pi_{d} = 11.18311$ |                       | $\Pi_{ud^2} = 11$   |                     
-|                      |                      | $\Pi_{d^2} = 20.6$    |                     | $\Pi_{ud^3} = 20.6$
-|                      |                      |                       | $\Pi_{d^3} = 28.28$ |                      
-|                      |                      |                       |                     | $\Pi_{d^4} = 34.424$  
-  
-Thus, the price of the option is $\Pi_{0} = 5.776359$.  
-
-# **Question 8**   
