@@ -131,6 +131,53 @@ From above, we can see:
   \end{aligned}
 \end{equation}  
 
+# **Question 4**
+
+## a. Find the distribution of $S_n$  
+
+Every fixed $\omega$ uniquely determines the path $S_0(\omega), S_1(\omega), S_2(\omega), ..., S_n(\omega)$ that can be graphically represented as a path in the coordinated plane.  
+
+A simple symmetric random walk is the one in which all outcomes have the same probability. The cardinality of the set $\Omega$ is $2^n$, i.e. $|\Omega| = 2^n$ hence for each $\omega \in \Omega$, we have $P(\{\omega\}) = \frac{1}{2n}$.  
+
+Looking at the distribution of the end point $S_n(\omega)$, we have $S_n \in \{ a, a\pm 1, a\pm 2, ..., a\pm n \}$. However we can reduce the set of possibilities for $S_n$ if we know whether n is even or odd. If $2 | n$ then there exists a positive integer $m$ such that $n= 2m$. Thus:  
+
+\begin{equation}
+  \begin{aligned}
+    S_n =& S_{2m} \in \{ a, a \pm 2, a \pm 4, ... , a \pm 2m\}
+  \end{aligned}
+\end{equation}  
+  
+If $2|n$ then there exists a non-negative integer $m$ such that $n= 2m + 1$. In this case, we can conclude:  
+
+\begin{equation}
+  \begin{aligned}
+    S_n =& S_{2m+1} \in \{ a \pm 1, a \pm 3, a \pm 5, ... , a \pm (2m+1) \}
+  \end{aligned}
+\end{equation}  
+
+$S_n$ follows a binomial distribution.  
+
+## b. Distribution of paths
+
+Recall the following identity proved in the lecture:  
+
+\begin{equation}
+  \begin{aligned}
+    P(S_n = b) =& {n \choose \frac{1}{2}*(n+b-a)} * 2^{-n} \\
+  \end{aligned}
+\end{equation} 
+
+Thus:
+
+\begin{equation}
+  \begin{aligned}
+    P(\omega|S_n = b) =& \frac{2^{-n}}{{n \choose \frac{1}{2}*(n+b-a)} * 2^{-n}} \\
+                      =& \frac{1}{{n \choose \frac{1}{2}*(n+b-a)}}  \\
+  \end{aligned}
+\end{equation} 
+
+We can see that the answer is independent on $p$. The distribution of paths end up at b follows a binomial distribution.  
+ 
 # **Question 6**   
 
 The stock price tree and payoffs of the option are given in the following tree:  
