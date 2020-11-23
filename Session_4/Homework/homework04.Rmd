@@ -45,7 +45,7 @@ Thus, rewrite in desirable term:
     \Pi_0 =& \frac{1}{(1+r)^n} \sum_{k=0}^{n} (S(0)u^k d^{n-k} - K)^+ *{n \choose k} \Big(\frac{1+r-d}{u-d}\Big)^k \Big(\frac{u-1-r}{u-d}\Big)^{n-k}  \\
   \end{aligned}
 \end{equation}  
-
+  
 # **Question 2**  
 
 Similar to question 1, substitute $\Pi_{n,k} = (K - S(n))^+$  
@@ -68,8 +68,8 @@ Digital call option pay off is given as follow:
   \begin{aligned}
     \Pi_{n_C} =& \left\{
                  \begin{matrix}
-                  1 \quad \text{,iff} \quad Sn \geqslant K \\
-                  0 \quad \text{,iff} \quad Sn < K \\
+                  1 \quad \text{,iff} \quad S_n \geqslant K \\
+                  0 \quad \text{,iff} \quad S_n < K \\
                  \end{matrix}
                  \right. \\
     \text{or}  \\
@@ -84,11 +84,11 @@ We have the initial price $\Pi_{0_c}$ of the call to be:
     \Pi_{0_C} =& \text{Discount Factor} * E\left(f(S_n) \right)  \\
               =& e^{-rn} * E\left(f(S_n) \right)\\
               =& e^{-rn} * E\left(I_{S_n - K \geqslant 0} \right)  \\
-              =& e^{-rn} * P\left(Sn - K \geqslant 0 \right)  \\
-              =& e^{-rn} * P\left(Sn \geqslant K \right)  \\
+              =& e^{-rn} * P\left(S_n - K \geqslant 0 \right)  \\
+              =& e^{-rn} * P\left(S_n \geqslant K \right)  \\
   \end{aligned}
 \end{equation} 
-
+  
 ## Pricing digital put option:   
 
 Digital call option pay off is given as follow:  
