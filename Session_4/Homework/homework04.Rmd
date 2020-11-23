@@ -155,7 +155,35 @@ If $2|n$ then there exists a non-negative integer $m$ such that $n= 2m + 1$. In 
   \end{aligned}
 \end{equation}  
 
-$S_n$ follows a binomial distribution.  
+To find the distribution $P(S_n = b)$, we need to count the number of outcomes $\omega \in \Omega$ for which $S_n(\omega) = b$.  
+
+We have:  
+
+\begin{equation}
+  \begin{aligned}
+    \left\{
+      \begin{matrix}
+        \#1 + \#(-1) =& n  \\
+        \#1 - \#(-1) =& b-a \\
+      \end{matrix}
+    \right.  \\
+    \text{The solution of the linear system above is:}  \\
+    \left\{
+      \begin{matrix}
+        \#1 =& \frac{n-a+b}{2}  \\
+        \#(-1) =& \frac{n+a-b}{2} \\
+      \end{matrix}
+    \right.  \\
+  \end{aligned}
+\end{equation}  
+
+Thus, for the sum of $n \pm 1$ to be equal to $b-a$, it is necessary and sufficent to have $\frac{n-a+b}{2}$ 1s, and $\frac{n+a-b}{2}$ (-1)s. There are ${n \choose \frac{n-a+b}{2}}$ outcomes with this property. Therefore:  
+
+\begin{equation}
+  \begin{aligned}
+    P(S_n = b) =& {n \choose \frac{n-a+b}{2}} * 2^{-n} \\
+  \end{aligned}
+\end{equation}  
 
 ## b. Distribution of paths
 
@@ -177,7 +205,69 @@ Thus:
 \end{equation} 
 
 We can see that the answer is independent on $p$. The distribution of paths end up at b follows a binomial distribution.  
- 
+
+
+# **Question 5**   
+
+## Reflection principle  
+
+We have:  
+
+\begin{equation}
+  \begin{aligned}
+    \left\{
+      \begin{matrix}
+        \#1 + \#(-1) =& n  \\
+        \#1 - \#(-1) =& b-2a \\
+      \end{matrix}
+    \right.  \\
+    \text{The solution of the linear system above is:}  \\
+    \left\{
+      \begin{matrix}
+        \#1 =& \frac{n+b}{2} - a  \\
+        \#(-1) =& \frac{n-b}{2} + a \\
+      \end{matrix}
+    \right.  \\
+  \end{aligned}
+\end{equation}  
+
+Thus:  $P(S_n = 2a - b) = 2^{-n} * {n \choose \frac{n+b}{2}+a}$.  
+  
+\begin{equation}
+  \begin{aligned}
+    P(S_n = 2a - b) =& 2^{-n} * \frac{n!}{\left( \frac{n+b}{2} + a \right)! * \left( n-\frac{n+b}{2} - a \right)!}  \\
+                    =& 2^{-n} * \frac{n!}{\left( \frac{n+b}{2} + a \right)! * \left( \frac{n+b}{2} - a \right)!} \\
+  \end{aligned}
+\end{equation} 
+  
+Based on the reflection principle with $S_n$ being a symmetric random walk, we have:  
+
+\begin{equation}
+  \begin{aligned}
+    P_{2a} \left( S_n^* \geqslant a,  S_n = b\right) = 2^{-n} * N(-2a,b) =& P_{-2a}(S_n = 2a - b)  \\
+    \text{Based on the property above:}  \\
+    P(S_n^* \geqslant a, S_n = b) = P(S_n = 2a - b) =& 2^{-n} * \frac{n!}{\left( \frac{n+b}{2} + a \right)! * \left( \frac{n+b}{2} - a \right)!}\\
+  \end{aligned}
+\end{equation} 
+
+## Find $P(S_n^* < a, S_n = b)$  
+
+Recall: $P(S_n = b) = {n \choose \frac{n-a+b}{2}} * 2^{-n}$
+  
+Thus, from the above:  
+
+\begin{equation}
+  \begin{aligned}
+    P(S*n < a, S_n = b) =& P(S_n = b) - P(S_n^* \geqslant a, S_n =b)  \\
+                        =& {n \choose \frac{n-a+b}{2}} * 2^{-n} - 
+                           {n \choose \frac{n+b}{2}+a} * 2^{-n} \\
+                        =& 2^{-n} * 
+                           \left[ 
+                            {n \choose \frac{n-a+b}{2}} - {n \choose \frac{n+b}{2}+a}
+                           \right]  \\
+  \end{aligned}
+\end{equation} 
+  
 # **Question 6**   
 
 The stock price tree and payoffs of the option are given in the following tree:  
@@ -472,6 +562,9 @@ The option price tree is given by the tree below:
 |                         |                         |                          |                           | $\Pi_{d^4} = 34.424$  
   
 Thus, the price of the option is $\Pi_{0} = 4.411388601$.  
+  
+# **Question 9**  
+No clue.  
 
 # **Question 10**   
 
