@@ -1,0 +1,63 @@
+---
+title: "Homework5"
+author: "Jeff Nguyen"
+date: "26/11/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, envir=.GlobalEnv)
+```
+
+**Pre-MFE Probability Seminar**  
+**Baruch College, Fall 2020**  
+
+
+Homework 05  
+Student Name: Ngoc Son (Jeff) Nguyen  
+
+
+# **Question 1**  
+  
+Let $Y$ denotes the numeric representation of the coin toss. Assign $Y=1$ for $H$ and $Y=0$ for $T$.  
+We're given: $P(\{H\}) = P(Y=1) = \frac{1}{5}$ and $P(\{T\}) = P(Y=0) = \frac{4}{5}$.  
+  
+Let further assign random variables $U$ and $Z$ as representations of $X$ based on the result of the coin toss as given: $U \sim U(0,1)$ and $Z \sim Exp(\lambda =1)$.  
+
+We have:  
+
+
+\begin{equation}
+  \begin{aligned}
+    X =& 1_{Y=1}*U + 1_{Y=0}*Z  \\
+   \text{and so:}&  \\
+    E(X) =& E\left( 1_{Y=1}*U + 1_{Y=0}*Z \right)  \\
+         =& E\left( 1_{Y=1}*U \right) + E\left( 1_{Y=0}*Z \right)  \quad \text{(Summation property of expectation)} \\ 
+  \end{aligned}
+\end{equation}  
+
+We note that the probability of the outcomes are independent of the outcome, i.e. $1_{Y=1}$ and $1_{Y=0}$ are independent of $U$ and $Z$. Thus, based on the product property of expectations:  
+
+\begin{equation}
+  \begin{aligned}
+    E(X) =& E\left( 1_{Y=1}*U \right) + E\left( 1_{Y=0}*Z \right)  \\
+         =& E\left( 1_{Y=1} \right) * E(U) + E\left( 1_{Y=0} \right) * E(Z)  \\
+         =& P(Y=1) * E(U) + P(Y=0) * E(Z)  \\
+         =& \frac{1}{5} * \frac{1+0}{2} + P(Y=0) * E(Z) \quad \text{(Property of uniform distribution)}  \\
+         =& \frac{1}{5} * \frac{1}{2} + \frac{4}{5} * \frac{1}{1} \quad \text{(Property of exponential distribution)}  \\
+         =& \frac{9}{10}  \\
+  \end{aligned}
+\end{equation}  
+
+In addition:  
+
+\begin{equation}
+  \begin{aligned}
+    Var(X) =& E(X^2) - E(X)^2  \\
+           =& E\left( 1_{Y=1} \right) * E(U)^2 + E\left( 1_{Y=0} \right) * E(Z)^2 - E(X)^2  \\
+           =& \frac{1}{5} * \left(\frac{1}{2}\right)^2 + \frac{4}{5} * 1^2 - \left(\frac{9}{10}\right)^2  \\
+           =& \frac{1}{25}  \\
+  \end{aligned}
+\end{equation}
