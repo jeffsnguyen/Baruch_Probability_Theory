@@ -3,8 +3,8 @@ title: "Homework5"
 author: "Jeff Nguyen"
 date: "26/11/2020"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -60,4 +60,40 @@ In addition:
            =& \frac{1}{5} * \left(\frac{1}{2}\right)^2 + \frac{4}{5} * 1^2 - \left(\frac{9}{10}\right)^2  \\
            =& \frac{1}{25}  \\
   \end{aligned}
-\end{equation}
+\end{equation}  
+
+# **Question 2**  
+
+With $X \sim Exp(\lambda)$ and suppose $X \geqslant m$, we are trying to prove:  
+
+\begin{equation}
+  \begin{aligned}
+    P( X \geqslant m + k | X \geqslant m) = P(X \geqslant k)
+  \end{aligned}
+\end{equation}  
+
+In other words, we are proving that future probabilities $P( X \geqslant m + k | X \geqslant m)$ is independent on the past information, or the value of $m$.  
+
+Based on the definition of conditional probability, we have:  
+
+\begin{equation}
+  \begin{aligned}
+    P( X \geqslant m + k | X \geqslant m) =& \frac{P(\{ X \geqslant m + k  \} \cap \{ X \geqslant m \})}{P(\{ X \geqslant m \})}  \\
+    \text{Since} \, m+k > m \, \text{:}& \, \{ X \geqslant m + k  \} \cap \{ X \geqslant m \} = \{ X \geqslant m + k  \}  \\
+    \text{thus:}&  \\
+    P( X \geqslant m + k | X \geqslant m) =& \frac{P(\{ X \geqslant m + k  \})}{P(\{ X \geqslant m \})}  \\
+                                          =& \frac{1 - P(\{ X \geqslant m + k  \}^c)}{1- P(\{ X \geqslant m \}^c)}  \\
+                                          =& \frac{1 - P(X < m + k)}{1- P(X < m)}  \\
+    \text{We know the cdf of X is:}& \, F_X(x) = (1 - e^{-\lambda*x})*1_{[0,\infty)}(x)  \\
+    \text{thus:}&  \\
+    P( X \geqslant m + k | X \geqslant m) =& \frac{\left[1 - (1 - e^{-\lambda*(m+k)})\right]*1_{[0,\infty)}(m+k)}
+                                                  {\left[1 - (1 - e^{-\lambda*m})\right]*1_{[0,\infty)}(m)}  \\
+                                          =& \frac{1 - 1 + e^{-\lambda*(m+k)}}{1 - 1 + e^{-\lambda*m}}  \\
+                                          =& \frac{e^{-\lambda*(m+k)}}{e^{-\lambda*m}}  \\
+                                          =& e^{-\lambda*k}  \\
+                                          =& 1 - 1 + e^{-\lambda*k}  \\
+                                          =& 1 - (1 - e^{-\lambda*k})  \\
+                                          =& 1 - P(X < k)  \\
+                                          =& P(X \geqslant k) \quad \text{Q.E.D.}  \\
+  \end{aligned}
+\end{equation} 
