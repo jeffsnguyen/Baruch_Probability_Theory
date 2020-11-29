@@ -96,4 +96,81 @@ Based on the definition of conditional probability, we have:
                                           =& 1 - P(X < k)  \\
                                           =& P(X \geqslant k) \quad \text{Q.E.D.}  \\
   \end{aligned}
-\end{equation} 
+\end{equation}  
+
+# **Question 3**  
+
+## Find the probability density function of $X$  
+
+We can see that $X$ is a continuous random variable as its cdf takes on a infinite number of value on $[0, + \infty)$.  
+
+We have the cdf $F_X(x) = \frac{x}{1+x}*1_{[0,+\infty)}$.  
+
+By the Fundamental Theorem of Calculus, the pdf can be found by differentiating the cdf. Thus, we find the pdf as below:  
+
+\begin{equation}
+  \begin{aligned}
+    f_X(x) =& \frac{d}{dx}[F_X(x)]  \\
+           =& \left( \frac{x}{1+x} \right)' * 1_{[0,+\infty)}  \\
+           =& \left[ \frac{1}{1+x} - \frac{1}{(1+x)^2}  \right] * 1_{[0,+\infty)}  \\
+           =& \frac{1+x-1}{(1+x)^2} * 1_{[0,+\infty)}  \\
+           =& \frac{x}{(1+x)^2} * 1_{[0,+\infty)}  \\
+  \end{aligned}
+\end{equation}  
+
+## Calculate $P(2 < X < 3)$  
+
+Because $X$ is a continuous random variable, it has zero point probability property, i.e. $P(X=x) = 0 \quad ,\forall x$.  
+
+Thus, we have:  
+
+\begin{equation}
+  \begin{aligned}
+    P(2 < X < 3) =& P(2 < X \leqslant 3)  \\
+                 =& P(\{X \leqslant 3\} \backslash \{X \leqslant 2\})  \\
+                 =& P(X \leqslant 3) - P(X \leqslant 2) \quad \text{(property of probability measure)}  \\
+                 =& F_X(3) - F_X(2)  \\
+                 =& \frac{3}{3+1} - \frac{2}{2+1}  \\
+                 =& \frac{3}{4} - \frac{2}{3}  \\
+                 =& \frac{1}{12}
+  \end{aligned}
+\end{equation}  
+
+## Calculate $E\left( {(1+X)^2} {e^{-2X}} \right)$  
+
+We have:  
+
+\begin{equation}
+  \begin{aligned}
+    E\left[ {(1+X)^2}{e^{-2X}} \right] =& \int {{(1+u)^2}{e^{-2u}}} {f_X(u)}du  \\
+                                       =& \int_{-\infty}^0 {{(1+u)^2} {e^{-2u}} {0} du} + 
+                                          \int_0^{\infty} {{(1+u)^2} {e^{-2u}}} {\frac{u}{(1+u)^2}}du  \\
+                                       =& 0 + \int_0^{\infty} {{(1+u)^2} {e^{-2u}}} {\frac{u}{(1+u)^2}}du  \\
+                                       =& \int_0^{\infty} {u} {e^{-2u}} du  \\
+  \end{aligned}
+\end{equation}  
+
+Integrating by parts with $\left\{ \begin{matrix} r = u \\ ds = e^{-2u} du \end{matrix}  \right.$  
+
+We have $\left\{ \begin{matrix} dr = du \\ ds = \int {e^{-2u} du} = -\frac{1}{2} \int {e^{-2u}(-2)}du = -\frac{1}{2} \int {e^{-2u}d(-2u)} = -\frac{1}{2} e^{-2u} \end{matrix}  \right.$    
+
+Thus:  
+
+\begin{equation}
+  \begin{aligned}
+    E\left[ {(1+X)^2}{e^{-2X}} \right] =& -\frac{u}{2} \int_0^{\infty} {e^{-2u}} d(-2u) - 
+                                          \int_0^{\infty} {{-\frac{1}{2}} {e^{-2u}}} du  \\
+                                       =& -\frac{u}{2} \int_0^{\infty} {e^{-2u}} d(-2u) - 
+                                          \frac{1}{4} \int_0^{\infty} {e^{-2u}} d(-2u)  \\
+                                       =& \left( -\frac{u}{2} -\frac{1}{4} \right) {\int_0^{\infty} {e^{-2u}} d(-2u)}  \\ 
+                                       =& \lim_{t \to \infty} \left( -\frac{2u+1}{4} * e^{-2u} \Big|_0^t \right)  \\
+                                       =& \lim_{t \to \infty} \left( -\frac{2t+1}{4} * e^{-2t} + \frac{1}{4}  \right)  \\
+                                       =& \lim_{t \to \infty} \left( -\frac{2t+1}{4} * e^{-2t} \right) + 
+                                          \lim_{t \to \infty} \frac{1}{4}  \quad \text{(sum of limits rule)}  \\
+                                       =& \left[\lim_{t \to \infty} \left( -\frac{2t+1}{4} \right) * 
+                                          \lim_{t \to \infty} \left( e^{-2t} \right)\right] + 
+                                          \frac{1}{4}  \quad \text{(product of limits rule)}  \\
+                                       =& \left[\lim_{t \to \infty} \left( -\frac{2t+1}{4} \right)\right] * 0 + \frac{1}{4}  \\
+                                       =& \frac{1}{4}  \\
+  \end{aligned}
+\end{equation}  
