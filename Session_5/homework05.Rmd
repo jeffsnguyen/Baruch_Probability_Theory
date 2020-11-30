@@ -174,3 +174,61 @@ Thus:
                                        =& \frac{1}{4}  \\
   \end{aligned}
 \end{equation}  
+
+# **Question 4**  
+
+An unfair coin is tossed, and it has probability of $\frac{1}{4}$ of landing $H$ and $\frac{3}{4}$ of landing $T$. Let $Z$ be the number of heads in this one toss.    
+
+Define $U$ and $V$ as independent and identifically distributed standard uniform random variables with $\left\{ \begin{matrix} U \sim U(0,1) \\ V \sim U(0,1) \end{matrix} \right.$
+
+Define random variable $X$ and $Y$ as follow: $X = U$ and $Y = \left\{ \begin{matrix} U \, \text{, if} \quad Z = 1 \\ V \, \text{, if} \quad Z = 0 \end{matrix} \right.$
+
+By definition, $Y$ copies the same value $U$ as $X$ $25 \%$ of the time and the other $75 \%$ of the time, they are independent standard uniform random variable.  
+
+Now, we verify that the set up satisfy the condition $corr(X,Y) = \frac{1}{4}$:  
+
+By definition of $X = U \sim U(0,1)$, we have the following properties:  
+
+\begin{equation}
+  \begin{aligned}
+    E(X) =& \frac{0+1}{2} = \frac{1}{2}  \\
+    \text{and}&  \\
+    Var(X) =& \frac{(1-0)^2}{12} = \frac{1}{12}  \\
+  \end{aligned}
+\end{equation}  
+
+In addition:  
+
+\begin{equation}
+  \begin{aligned}
+    E(Y) =& \frac{1}{4} * E(U) + \frac{3}{4} * E(V)  \\
+         =& \frac{1}{4} * \frac{1}{2} + \frac{3}{4} * \frac{1}{2} \quad \text{(property of standard uniform distribution)}  \\
+         =& \frac{1}{2}  \\
+    \text{and}&  \\
+    Var(Y) =& E(Y^2) - (E(Y))^2  \\
+           =& \left[ \frac{1}{4} * E(U^2) + \frac{3}{4} * E(V^2) \right] - \left( \frac{1}{2} \right)^2  \\
+           =& \left( \frac{1}{4} * \frac{1}{3} + \frac{3}{4} * \frac{1}{3} \right) - \frac{1}{4}  \\
+           =& \frac{1}{12}  \\
+  \end{aligned}
+\end{equation}  
+
+Thus,  
+
+\begin{equation}
+  \begin{aligned}
+    cov(X,Y) =& E(XY) - {E(X)}{E(Y)}  \\
+             =& \left[ \frac{1}{4} * E(U^2) + \frac{3}{4} * E(UV) \right] - \left( \frac{1}{2} * \frac{1}{2}  \right)  \\
+             =& \left[ \frac{1}{4} * \frac{1}{3} + \frac{3}{4} * \frac{1}{2} * \frac{1}{2} \right] - \frac{1}{4}  \\
+             =& \frac{13}{48} - \frac{1}{4}  \\
+             =& \frac{1}{48}  \\
+    \text{subsequently,}&  \\
+    corr(X,Y) =& \frac{cov(X,Y)}{\sqrt{Var(X)} * \sqrt{Var(Y)}}  \\
+              =& \frac{\frac{1}{48}}{\sqrt{\frac{1}{12}} * \sqrt{\frac{1}{12}}}  \\
+              =& \frac{12}{48}  \\
+              =& \frac{1}{4}  \quad \text{satisfies the problem conditions.}  \\
+  \end{aligned}
+\end{equation}  
+
+# **Question 5**  
+
+
