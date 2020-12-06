@@ -1,0 +1,43 @@
+---
+title: "Homework6"
+author: "Jeff Nguyen"
+date: "05/12/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, envir=.GlobalEnv)
+```
+
+**Pre-MFE Probability Seminar**  
+**Baruch College, Fall 2020**  
+
+
+Homework 06  
+Student Name: Ngoc Son (Jeff) Nguyen  
+
+
+# **Question 1**  
+
+## a) Find the joint pdf $f_{X,Y}$  
+
+When $x=0$ or $y=0$, $F(x,y) = 0$. Thus:
+
+\begin{equation}
+  \begin{aligned}
+    F_{X,Y}(x,y) =& Cxy(x^2 + y) * 1_{\{ x,y \in (0, \infty), x+2y \leqslant 4\}}(x,y)  \\
+    \text{thus:}&  \\
+    f_{X,Y}(x,y) =& \frac{\partial^2}{{\partial x} {\partial y}} F_{X,Y}(x,y) \\
+                 =& \frac{\partial^2}{{\partial x} {\partial y}} Cxy(x^2 + y) * 
+                    1_{\{ x,y \in (0, \infty), x+2y \leqslant 4\}}(x,y)  \\
+                 =& \frac{\partial}{\partial x}\Big[ \frac{\partial (Cx^3y + Cxy^2)}{\partial y} \Big] * 
+                    1_{\{ x,y \in (0, \infty), x+2y \leqslant 4\}}(x,y)  \\
+                 =& \frac{\partial}{\partial x} (Cx^3 + 2Cxy) * 
+                    1_{\{ x,y \in (0, \infty), x+2y \leqslant 4\}}(x,y)  \\
+                 =& (3Cx^2 + 2Cy) * 1_{\{ x,y \in (0, \infty), x+2y \leqslant 4\}}(x,y)  \\
+  \end{aligned}
+\end{equation}
+  
+# b) Determine the constant $C$
