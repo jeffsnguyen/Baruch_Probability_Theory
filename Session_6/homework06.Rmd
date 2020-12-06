@@ -3,8 +3,8 @@ title: "Homework6"
 author: "Jeff Nguyen"
 date: "05/12/2020"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -23,21 +23,53 @@ Student Name: Ngoc Son (Jeff) Nguyen
 
 ## a) Find the joint pdf $f_{X,Y}$  
 
+We have the domain of $x$ and $y$ as follow:  
+```{r}
+curve(2-x/2, -1, 6, xlab="x", ylab="y", main="Domain")
+x_coord <- c(0,0,4)
+y_coord <- c(0,2,0)
+polygon(x_coord, y_coord, col="red")
+abline(v=0)
+abline(h=0)
+```  
+  
+We can clearly see $x \in [0,4]$ and $y \in [0,2]$.  
 When $x=0$ or $y=0$, $F(x,y) = 0$. Thus:
 
 \begin{equation}
   \begin{aligned}
-    F_{X,Y}(x,y) =& Cxy(x^2 + y) * 1_{\{ x,y \in (0, \infty), x+2y \leqslant 4\}}(x,y)  \\
-    \text{thus:}&  \\
+    F_{X,Y}(x,y) =& Cxy(x^2 + y) * 1_{\{ x \in [0,4], y \in [0,2]\}}(x,y)  \\
+    \text{thus, by definition of pdf:}  \\
     f_{X,Y}(x,y) =& \frac{\partial^2}{{\partial x} {\partial y}} F_{X,Y}(x,y) \\
                  =& \frac{\partial^2}{{\partial x} {\partial y}} Cxy(x^2 + y) * 
-                    1_{\{ x,y \in (0, \infty), x+2y \leqslant 4\}}(x,y)  \\
+                    1_{\{ x \in [0,4], y \in [0,2]\}}(x,y)  \\
                  =& \frac{\partial}{\partial x}\Big[ \frac{\partial (Cx^3y + Cxy^2)}{\partial y} \Big] * 
-                    1_{\{ x,y \in (0, \infty), x+2y \leqslant 4\}}(x,y)  \\
+                    1_{\{ x \in [0,4], y \in [0,2]\}}(x,y)  \\
                  =& \frac{\partial}{\partial x} (Cx^3 + 2Cxy) * 
-                    1_{\{ x,y \in (0, \infty), x+2y \leqslant 4\}}(x,y)  \\
-                 =& (3Cx^2 + 2Cy) * 1_{\{ x,y \in (0, \infty), x+2y \leqslant 4\}}(x,y)  \\
+                    1_{\{ x \in [0,4], y \in [0,2]\}}(x,y)  \\
+                 =& (3Cx^2 + 2Cy) * 1_{\{ x \in [0,4], y \in [0,2]\}}(x,y)  \\
   \end{aligned}
 \end{equation}
   
-# b) Determine the constant $C$
+# b) Determine the constant $C$  
+
+By definition, $\lim\limits_{(x,y) \to [4,2]} F_{X,Y}(x,y) = 1$. With this, we have:  
+
+\begin{equation}
+  \begin{aligned}
+    F_{X,Y}(x,y) =& \int \int_{D} f_{X,Y}(x,y) \, dxdy   \\
+                 =& \int_{0}^{2} \int_{0}^{4} (3Cx^2 + 2Cy) \, dxdy  \\
+                 =& C \int_{0}^{2} \int_{0}^{4} (3x^2 + 2y) \, dxdy  \\
+                 =& C \int_{0}^{2} \quad \int_{0}^{4} (3x^2 + 2y)dx \quad dy  \\
+                 =& C \int_{0}^{2} \quad \Big( \frac{3x^4}{4} + 2yx \Big|_{x=0}^{x=4} \Big) \quad dy  \\
+                 =& C \int_{0}^{2} (192 + 8y)dy  \\
+                 =& C (192y + 4y^2) \Big|_{y=0}^{y=2}  \\
+                 =& C(384 + 16)  \\
+                 =& 400C \\
+    \text{plug in:}  \\
+    1 =& 400C \\
+    C =& \frac{1}{400} \\
+  \end{aligned}
+\end{equation}
+  
+Thus the constant $C=400$.
