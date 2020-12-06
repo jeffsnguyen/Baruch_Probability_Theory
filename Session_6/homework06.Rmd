@@ -3,8 +3,8 @@ title: "Homework6"
 author: "Jeff Nguyen"
 date: "05/12/2020"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -25,10 +25,12 @@ Student Name: Ngoc Son (Jeff) Nguyen
 
 We have the domain of $x$ and $y$ as follow:  
 ```{r}
-curve(2-x/2, -1, 6, xlab="x", ylab="y", main="Domain")
+curve(2-x/2, -1, 6, xlab="x", ylab="y", main="Domain")  # Plot x+2y=4
 x_coord <- c(0,0,4)
 y_coord <- c(0,2,0)
-polygon(x_coord, y_coord, col="red")
+polygon(x_coord, y_coord, col="red")  # Shaded red polygon is the domain of x,y
+
+# Adding lines to represent coordinates
 abline(v=0)
 abline(h=0)
 ```  
@@ -51,7 +53,7 @@ When $x=0$ or $y=0$, $F(x,y) = 0$. Thus:
   \end{aligned}
 \end{equation}
   
-# b) Determine the constant $C$  
+## b) Determine the constant $C$  
 
 By definition, $\lim\limits_{(x,y) \to [4,2]} F_{X,Y}(x,y) = 1$. With this, we have:  
 
@@ -72,4 +74,128 @@ By definition, $\lim\limits_{(x,y) \to [4,2]} F_{X,Y}(x,y) = 1$. With this, we h
   \end{aligned}
 \end{equation}
   
-Thus the constant $C=400$.
+Thus the constant $C=400$.  
+
+## c) Determine the marginal pdf $f_X$ and $f_Y$  
+
+If $t \geqslant 0$:  
+
+\begin{equation}
+  \begin{aligned}
+    F_X(t) =& P(X \leqslant t)   \\
+           =& \int \int_{u \leqslant t} f_{X,Y}(u,v)dudv   \\
+    f_{X,Y}(u,v) =& \frac{1}{400} (3u^2 + 2v) * 1_{\{ u \in [0,4], v \in [0,2]\}}(u,v)  \\
+    D =& \{{u \leqslant t}\} \cap \{{u \in [0,4], v \in [0,2]}\}  \\
+  \end{aligned}
+\end{equation}  
+
+We have the domain of $u$ and $v$ as follow:  
+```{r}
+curve(2-x/2, -1, 6, xlab="u", ylab="v", main="Domain")  # Plot x+2y=4
+x_coord <- c(0,0,4)
+y_coord <- c(0,2,0)
+polygon(x_coord, y_coord, col="red")  # Shaded red polygon is the domain of x,y
+
+# Adding lines to represent coordinates
+abline(v=0)
+abline(h=0)
+
+abline(v=3)  # Adding line to represent t boundary
+
+u_coord <- c(0,0,3,3)
+v_coord <- c(0,2,.5,0)
+polygon(u_coord, v_coord, col="green")  # Shaded green polygon is the domain of u,v
+```
+  
+We have:  
+
+\begin{equation}
+  \begin{aligned}
+    F_X(t) =& \int \int_{D} f_{X,Y}(u,v) \, dvdu   \\
+           =& \int_{0}^{t} \int_{0}^2 f_{X,Y}(u,v) \, dvdu   \\
+           =& \int_{0}^{t} \int_{0}^2 \frac{1}{400} (3u^2 + 2v) \, dvdu   \\
+           =& \frac{1}{400} \int_{0}^{t} \quad \int_{0}^2 (3u^2 + 2v)dv \quad du   \\
+           =& \frac{1}{400} \int_{0}^{t} (3u^2v + v^2) \Big|_{v=0}^{v=2} \quad du \\
+           =& \frac{1}{400} \int_{0}^{t} (6u^2 + 4)du \\
+           =& \frac{1}{400} (6u^2 + 4) \Big|_{u=0}^{u=t} \\
+           =& \frac{1}{400} 6t^2 \\
+           =& \frac{3t^2}{200}  \\
+  \end{aligned}
+\end{equation}
+  
+If $t<0$: $F_X(t) = P(X<0) = 0$. Thus: $F_X(t) = \frac{3t^2}{200} * 1_{[0,4]}(t)$.  
+
+Therefore, by definition: $f_X(t) = F_X^{'}(t) = \frac{3t}{100} * 1_{[0,4]}(t)$.  
+
+In addition:  
+
+If $s \geqslant 0$:  
+
+\begin{equation}
+  \begin{aligned}
+    F_Y(s) =& P(Y \leqslant s)   \\
+           =& \int \int_{v \leqslant s} f_{X,Y}(u,v)dudv   \\
+    f_{X,Y}(u,v) =& \frac{1}{400} (3u^2 + 2v) * 1_{\{ u \in [0,4], v \in [0,2]\}}(u,v)  \\
+    G =& \{{v \leqslant s}\} \cap \{{u \in [0,4], v \in [0,2]}\}  \\
+  \end{aligned}
+\end{equation}  
+
+We have the domain of $u$ and $v$ as follow:  
+```{r}
+curve(2-x/2, -1, 6, xlab="u", ylab="v", main="Domain")  # Plot x+2y=4
+x_coord <- c(0,0,4)
+y_coord <- c(0,2,0)
+polygon(x_coord, y_coord, col="red")  # Shaded red polygon is the domain of x,y
+
+# Adding lines to represent coordinates
+abline(v=0)
+abline(h=0)
+
+abline(u=1.5)  # Adding line to represent s boundary
+
+u_coord <- c(0,0,1,4)
+v_coord <- c(0,1.5,1.5,0)
+polygon(u_coord, v_coord, col="blue")  # Shaded blue polygon is the domain of u,v
+```
+  
+We have:  
+
+\begin{equation}
+  \begin{aligned}
+    F_Y(s) =& \int \int_{G} f_{X,Y}(u,v) \, dudv   \\
+           =& \int_{0}^{s} \int_{0}^4 f_{X,Y}(u,v) \, dudv   \\
+           =& \int_{0}^{s} \int_{0}^4 \frac{1}{400} (3u^2 + 2v) \, dudv   \\
+           =& \frac{1}{400} \int_{0}^{s} \quad \int_{0}^2 (3u^2 + 2v)dv \quad dv   \\
+           =& \frac{1}{400} \int_{0}^{s} (u^3 + 2uv) \Big|_{u=0}^{u=2} \quad dv \\
+           =& \frac{1}{400} \int_{0}^{s} (64 + 8v)dv \\
+           =& \frac{1}{400} (64v + 4v^2) \Big|_{v=0}^{v=s} \\
+           =& \frac{1}{400} 64s + 4s^2 \\
+           =& \frac{16s + s^2}{100}  \\
+  \end{aligned}
+\end{equation}
+  
+If $s<0$: $F_Y(s) = P(Y<0) = 0$. Thus: $F_X(t) = \frac{16s + s^2}{100} * 1_{[0,2]}(s)$.  
+
+Therefore, by definition: $f_Y(s) = F_Y^{'}(s) = \frac{16s + s^2}{100} * 1_{[0,2]}(s)$.
+  
+## d) Determine the conditional pdf $f_{X|Y}$ and $f_{Y|X}$  
+
+By definition:
+
+\begin{equation}
+  \begin{aligned}
+    f_{X|Y}(x|y) =& \frac{f_{X,Y}(x,y)}{f_Y(y)}  \\
+                 =& \frac{\frac{1}{400} (3x^2 + 2y) * 1_{\{ x \in [0,4], y \in [0,2]\}}(x,y)}{\frac{16y + y^2}{100} * 1_{[0,2]}(s)}  \\
+                 =& \frac{1}{4} \frac{3x^2 + 2y}{16y + y^2}  \\
+  \end{aligned}
+\end{equation}
+  
+Also, by definition:
+
+\begin{equation}
+  \begin{aligned}
+    f_{Y|X}(y|x) =& \frac{f_{X,Y}(x,y)}{f_X(x)}  \\
+                 =& \frac{\frac{1}{400} (3x^2 + 2y) * 1_{\{ x \in [0,4], y \in [0,2]\}}(x,y)}{\frac{3x}{100} * 1_{[0,4]}(x)}  \\
+                 =& \frac{1}{4} \frac{3x^2 + 2y}{3x}  \\
+  \end{aligned}
+\end{equation}
