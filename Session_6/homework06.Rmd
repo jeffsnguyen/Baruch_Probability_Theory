@@ -199,3 +199,68 @@ Also, by definition:
                  =& \frac{1}{4} \frac{3x^2 + 2y}{3x}  \\
   \end{aligned}
 \end{equation}
+  
+# **Question 2**
+  
+The pdf of $X$ where $X \sim N(\mu,\sigma^2)$ is given by $f_X(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}$.  
+
+With $Y = e^{-X}$, we note that $supp(Y) = (0,\infty) \quad \forall \, y \in (0,\infty)$. By definition, the pdf of $Y$ is given by:  
+
+\begin{equation}
+  \begin{aligned}
+    F_Y(y) =& P(Y \leqslant y)  \\
+           =& P(e^{-X} \leqslant y)  \\
+           =& P(X \geqslant -lny)  \\
+           =& \int_{-lny}^{\infty} e^{\frac{-(x-\mu)^2}{2\sigma^2}} * 1_{(0,\infty)}(y) \\
+           =& \Big[ \frac{1}{\sigma\sqrt{2\pi}} \int_{-lny}^{\infty} e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx \Big] * 1_{(0,\infty)}(y)  \\
+  \end{aligned}
+\end{equation}
+  
+Hence, for any $y \in (0,\infty)$:  
+
+\begin{equation}
+  \begin{aligned}
+    f_Y(y) =& F_Y^{'}(y)  \\
+           =& \frac{d}{dy} \Big( \frac{1}{\sigma\sqrt{2\pi}} \int_{-lny}^{\infty} e^{\frac{-(x-\mu)^2}{2\sigma^2}} \Big) * 1_{(0,\infty)}(y)  \\
+           =& \Big[ -\frac{1}{\sigma\sqrt{2\pi}} e^{\frac{-(lny-\mu)^2}{2\sigma^2}} \frac{d}{dy} (-lny) \Big] * 1_{(0,\infty)}(y)  \\
+           =& \frac{1}{y\sigma\sqrt{2\pi}} e^{\frac{-(lny-\mu)^2}{2\sigma^2}} * 1_{(0,\infty)}(y)  \\
+  \end{aligned}
+\end{equation}
+  
+# **Question 3**
+  
+We are given $f_X(x) = 2x*1_{[0,1]}(x)$.  
+
+In addition we have $Y|X \sim U(0,x)$. This gives the pdf of $Y|X$: $f_{Y|X}(y|x) = \frac{1}{x-0} * 1_{[0,x]}(y|x)$.  
+
+Thus, by definition of conditional density:  
+
+\begin{equation}
+  \begin{aligned}
+    f_{X,Y}(x,y) =& f_{Y|X}(y|x) * f_X(x)  \\
+                 =& \frac{1}{x} * 1_{[0,x]}(y|x) * 2x * 1_{[0,1]}(x) \\
+                 =& 2 * 1_{[0,x]}(y|x) * 1_{[0,1]}(x)
+  \end{aligned}
+\end{equation}
+
+We can see that $supp(X) = [0,1]$ and $supp(Y) = [0,x]$.  
+
+For any $y \in [0,1]$:  
+
+\begin{equation}
+  \begin{aligned}
+    f_Y(y) =& \int_{D_y} f_{X,Y}(x,y)dx  \\
+           =& \int_{y}^1 2dx  \\
+           =& 2x \Big|_{x=y}^{x=1}  \\
+           =& 2 - 2y \\
+           =& 2(1 - y)  \\
+  \end{aligned}
+\end{equation}
+  
+For any $y \notin [0,1]$, the integrand is 0.
+
+Therefore, $f_Y(y) = 2(1 - y) * 1_{[0,1]}(y)$.
+  
+# **Question 4**  
+
+The pdf of $X$ where $X \sim U(0,1)$ is given by $f_X(x) = $
