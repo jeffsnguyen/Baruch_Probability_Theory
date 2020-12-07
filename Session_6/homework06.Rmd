@@ -314,3 +314,24 @@ Hence, for any $y \in [0,1]$:
   \end{aligned}
 \end{equation}
   
+# **Question 5**  
+
+By definition, $X$ and $Y$ to have the standard bivariate normal distribution with correlation $p$ if their joint pdf is given by:  
+
+\begin{equation}
+  \begin{aligned}
+    f_{XY}(x,y) =& \frac{1}{2\pi\sqrt{1-p^2}} e^{-\frac{1}{2(1-p^2)} (x^2 - 2pxy + y^2)}  \\
+    \text{at} \quad p =& \frac{1}{2}\text{:}  \\
+    f_{XY}(x,y) =& \frac{1}{2\pi\sqrt{1-\frac{1}{2}^2}} e^{-\frac{1}{2\Big(1-\frac{1}{2}^2\Big)} \Big(x^2 - 2\frac{1}{2}xy + y^2\Big)}  \\
+                =& \frac{1}{\pi\sqrt{3}} e^{-\frac{2}{3} (x^2 - xy + y^2)}  \\
+  \end{aligned}
+\end{equation}
+  
+Thus, by definition:  
+
+\begin{equation}
+  \begin{aligned}
+    P(X \geqslant 0, Y \geqslant 0) =& \int_{0}^{\infty} \int_{0}^{\infty} \frac{1}{\pi\sqrt{3}} e^{-\frac{2}{3} (x^2 - xy + y^2)} dydx  \\
+                                    =& \frac{1}{3}
+  \end{aligned}
+\end{equation}
