@@ -211,7 +211,7 @@ With $Y = e^{-X}$, we note that $supp(Y) = (0,\infty) \quad \forall \, y \in (0,
     F_Y(y) =& P(Y \leqslant y)  \\
            =& P(e^{-X} \leqslant y)  \\
            =& P(X \geqslant -lny)  \\
-           =& \int_{-lny}^{\infty} e^{\frac{-(x-\mu)^2}{2\sigma^2}} * 1_{(0,\infty)}(y) \\
+           =& \int_{-lny}^{\infty} e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx * 1_{(0,\infty)}(y) \\
            =& \Big[ \frac{1}{\sigma\sqrt{2\pi}} \int_{-lny}^{\infty} e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx \Big] * 1_{(0,\infty)}(y)  \\
   \end{aligned}
 \end{equation}
@@ -263,4 +263,54 @@ Therefore, $f_Y(y) = 2(1 - y) * 1_{[0,1]}(y)$.
   
 # **Question 4**  
 
-The pdf of $X$ where $X \sim U(0,1)$ is given by $f_X(x) = $
+The pdf of $X$ where $X \sim U(0,1)$ is given by $f_X(x) = \frac{1}{1-0} * 1_{[0,1]}(x) = 1_{[0,1]}(x)$.  
+
+With $Y = X^p \quad \forall \, p \neq 0$, we note that $supp(Y) = [0,1]$. By definition, the pdf of $Y$ is given by:  
+
+\begin{equation}
+  \begin{aligned}
+    F_Y(y) =& P(Y \leqslant y)  \\
+           =& P(X^p \leqslant y)  \\
+  \end{aligned}
+\end{equation}
+
+For $p>0$:  
+
+\begin{equation}
+  \begin{aligned}
+    F_Y(y) =& P(X \leqslant y^{\frac{1}{p}})  \\
+           =& \int_{0}^{y^{\frac{1}{p}}} dx * 1_{[0,1]}(y)  \\
+  \end{aligned}
+\end{equation}
+  
+Hence, for any $y \in [0,1]$:  
+
+\begin{equation}
+  \begin{aligned}
+    f_Y(y) =& F_Y^{'}(y)  \\
+           =& \frac{d}{dy} \Big( \int_{0}^{y^{\frac{1}{p}}} dx \Big) * 1_{[0,1]}(y)  \\
+           =& x \Big|_{x=0}^{x=y^{\frac{1}{p}}} * 1_{[0,1]}(y)  \\
+           =& y^{\frac{1}{p}} * 1_{[0,1]}(y)
+  \end{aligned}
+\end{equation}
+  
+For $p<0$:  
+
+\begin{equation}
+  \begin{aligned}
+    F_Y(y) =& P(X \geqslant y^{\frac{1}{p}})  \\
+           =& \int_{y^{\frac{1}{p}}}^{1} dx * 1_{[0,1]}(y)  \\
+  \end{aligned}
+\end{equation}
+  
+Hence, for any $y \in [0,1]$:  
+
+\begin{equation}
+  \begin{aligned}
+    f_Y(y) =& F_Y^{'}(y)  \\
+           =& \frac{d}{dy} \Big( \int_{y^{\frac{1}{p}}}^{1} dx \Big) * 1_{[0,1]}(y)  \\
+           =& x \Big|_{x=y^{\frac{1}{p}}}^{x=1} * 1_{[0,1]}(y)  \\
+           =& \big( 1 - y^{\frac{1}{p}} \big) * 1_{[0,1]}(y)
+  \end{aligned}
+\end{equation}
+  
