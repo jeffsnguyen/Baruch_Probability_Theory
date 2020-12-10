@@ -1,0 +1,56 @@
+---
+title: "Homework 7"
+author: "Jeff Nguyen"
+date: "09/12/2020"
+output:
+  html_document: default
+  pdf_document: default
+header-includes:
+- \usepackage{dsfont}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, envir=.GlobalEnv)
+```
+
+**Pre-MFE Probability Seminar**  
+**Baruch College, Fall 2020**  
+
+
+Homework 07  
+Student Name: Ngoc Son (Jeff) Nguyen  
+
+
+# **Question 1**  
+
+Consider the random variable $X_1, X_2, ..., X_{10000}$ as the annual payout to customer's insurance claim.  
+
+We are given $E[X_i] = \mu = 10^3$ and $Var[X_i] = 8*10^2$.  
+
+We are looking to find the average charge to each customer denoting $\Pi$ so that the probability of the event that the sum of annual payout to each customer not exceeding the total annual charge for each customer is exactly $99.5\%$, i.e.:  
+
+\begin{equation}
+  \begin{aligned}
+    P\Big[ X_1 + ... + X_{10000} \leqslant 10^4\Pi \Big] =& .995 \\
+    P\Big[ X_1 + ... + X_{10000} - 10^4\mu \leqslant 10^4\Pi - 10^4\mu \Big] =& .995 \\
+    P\Big[ \frac{X_1 + ... + X_{10000} - 10^4*10^3}{\sqrt{10^4}\sqrt{8*10^2}} \leqslant \frac{10^4\Pi - 10^4*10^3}{\sqrt{10^4}\sqrt{8*10^2}} \Big] =& .995 \\
+    P\Big[ \frac{X_1 + ... + X_{10000} - 10^4*10^3}{10^3*2\sqrt{2}} \leqslant \frac{10^4(\Pi -10^3)}{10^3*2\sqrt{2}} \Big] =& .995 \\
+    P\Big[ \frac{X_1 + ... + X_{10000} - 10^4*10^3}{10^3*2\sqrt{2}} \leqslant \frac{5(\Pi -10^3)}{\sqrt{2}} \Big] =& .995 \\
+    N\Big[ \frac{5(\Pi -10^3)}{\sqrt{2}} \Big] =& .995  \quad \text{(Central Limit Theorem)}  \\
+    \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\frac{5(\Pi -10^3)}{\sqrt{2}}} e^{-\frac{t^2}{2}}dt =& .995  \\
+    \frac{1}{\sqrt{2\pi}} \frac{\sqrt{\pi}}{\sqrt{2}}erf\Big( \frac{t}{\sqrt{2}} \Big) \Big|_{t=-\infty}^{t={\frac{5(\Pi -10^3)}{\sqrt{2}}}} =& .995  \\
+    \frac{1}{2}erf\Big[ \frac{5(\Pi -10^3)}{2} \Big] + \frac{1}{2} =& .995  \\
+    erf\Big[ \frac{5(\Pi -10^3)}{2} \Big] =& .99  \\
+    \frac{5(\Pi -10^3)}{2} =& erf^{-1}(.99)  \\
+    \Pi =& \frac{2erf^{-1}(.99) + 10^3}{5}  \\
+  \end{aligned}
+\end{equation}
+
+```{r}
+erf.inv <- function(x) qnorm((x + 1)/2)/sqrt(2)  # inverse erf function
+Pi <- (2*erf.inv(.99)+10^3)/5
+```
+
+Using R to approximate, we have the necessary average annual charge to each customer to be $\Pi = \frac{2erf^{-1}(.99) + 10^3}{5} \approx `r Pi`$, or approximately $\$ `r round(Pi,2)`$.  
+
+# **Question 2**  
