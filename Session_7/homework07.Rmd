@@ -3,10 +3,9 @@ title: "Homework 7"
 author: "Jeff Nguyen"
 date: "09/12/2020"
 output:
+  pdf_document:
+    extra_dependencies: ["dsfont"]
   html_document: default
-  pdf_document: default
-header-includes:
-- \usepackage{dsfont}
 ---
 
 ```{r setup, include=FALSE}
@@ -31,11 +30,11 @@ We are looking to find the average charge to each customer denoting $\Pi$ so tha
 
 \begin{equation}
   \begin{aligned}
-    P\Big[ X_1 + ... + X_{10000} \leqslant 10^4\Pi \Big] =& .995 \\
-    P\Big[ X_1 + ... + X_{10000} - 10^4\mu \leqslant 10^4\Pi - 10^4\mu \Big] =& .995 \\
-    P\Big[ \frac{X_1 + ... + X_{10000} - 10^4*10^3}{\sqrt{10^4}\sqrt{8*10^2}} \leqslant \frac{10^4\Pi - 10^4*10^3}{\sqrt{10^4}\sqrt{8*10^2}} \Big] =& .995 \\
-    P\Big[ \frac{X_1 + ... + X_{10000} - 10^4*10^3}{10^3*2\sqrt{2}} \leqslant \frac{10^4(\Pi -10^3)}{10^3*2\sqrt{2}} \Big] =& .995 \\
-    P\Big[ \frac{X_1 + ... + X_{10000} - 10^4*10^3}{10^3*2\sqrt{2}} \leqslant \frac{5(\Pi -10^3)}{\sqrt{2}} \Big] =& .995 \\
+    \mathds{P}\Big[ X_1 + ... + X_{10000} \leqslant 10^4\Pi \Big] =& .995 \\
+    \mathds{P}\Big[ X_1 + ... + X_{10000} - 10^4\mu \leqslant 10^4\Pi - 10^4\mu \Big] =& .995 \\
+    \mathds{P}\Big[ \frac{X_1 + ... + X_{10000} - 10^4*10^3}{\sqrt{10^4}\sqrt{8*10^2}} \leqslant \frac{10^4\Pi - 10^4*10^3}{\sqrt{10^4}\sqrt{8*10^2}} \Big] =& .995 \\
+    \mathds{P}\Big[ \frac{X_1 + ... + X_{10000} - 10^4*10^3}{10^3*2\sqrt{2}} \leqslant \frac{10^4(\Pi -10^3)}{10^3*2\sqrt{2}} \Big] =& .995 \\
+    \mathds{P}\Big[ \frac{X_1 + ... + X_{10000} - 10^4*10^3}{10^3*2\sqrt{2}} \leqslant \frac{5(\Pi -10^3)}{\sqrt{2}} \Big] =& .995 \\
     N\Big[ \frac{5(\Pi -10^3)}{\sqrt{2}} \Big] =& .995  \quad \text{(Central Limit Theorem)}  \\
     \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\frac{5(\Pi -10^3)}{\sqrt{2}}} e^{-\frac{t^2}{2}}dt =& .995  \\
     \frac{1}{\sqrt{2\pi}} \frac{\sqrt{\pi}}{\sqrt{2}}erf\Big( \frac{t}{\sqrt{2}} \Big) \Big|_{t=-\infty}^{t={\frac{5(\Pi -10^3)}{\sqrt{2}}}} =& .995  \\
@@ -54,3 +53,77 @@ Pi <- (2*erf.inv(.99)+10^3)/5
 Using R to approximate, we have the necessary average annual charge to each customer to be $\Pi = \frac{2erf^{-1}(.99) + 10^3}{5} \approx `r Pi`$, or approximately $\$ `r round(Pi,2)`$.  
 
 # **Question 2**  
+
+X, Y are bivariate normal random variables, following $X \sim N(\mu_X, \sigma_X^2)$, $Y \sim N(\mu_Y, \sigma_Y^2)$ and $\rho(X,Y) = \rho$.  
+
+
+By definition, their joint pdf is given by:  
+
+\begin{equation}
+  \begin{aligned}
+    f_{XY} = \frac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1-\rho^2}} * e^{-{\frac{1}{2(1-\rho^2)}}*{\Big[ \Big( \frac{x-\mu_X}{\sigma_X} \Big)^2 + \Big( \frac{y-\mu_Y}{\sigma_Y} \Big)^2 - 2\rho\frac{(x-\mu_X)(y-\mu_Y)}{\sigma_X\sigma_Y}  \Big]}}
+  \end{aligned}
+\end{equation}
+  
+There exists $Z_1$ and $Z_2$ random variable such that $Z_1 \sim N(0,1)$ and $Z_2 \sim N(0,1)$ such that:
+
+\begin{equation}
+  \begin{aligned}
+    \left\{
+      \begin{matrix}
+        X =& \sigma_X(\rho Z_1 + \sqrt{1 - \rho^2}Z_2) + \mu_X  \\
+        Y =& \sigma_Y Z_1 + \mu_Y  \\
+      \end{matrix}
+    \right.
+  \end{aligned}
+\end{equation}
+
+Thus, given $Y=y$, we have:  
+
+\begin{equation}
+  \begin{aligned}
+    y =& \sigma_Y Z_1 + \mu_Y  \\
+    Z_1 =& \frac{y - \mu_Y}{\sigma_Y}
+  \end{aligned}
+\end{equation}
+
+In addition:
+
+\begin{equation}
+  \begin{aligned}
+    X =& \sigma_X(\rho Z_1 + \sqrt{1 - \rho^2}Z_2) + \mu_X  \\
+      =& \sigma_X(\rho \frac{y - \mu_Y}{\sigma_Y} + \sqrt{1 - \rho^2}Z_2) + \mu_X  \\
+      =& \sigma_X \rho \frac{y - \mu_Y}{\sigma_Y} + \sigma_X \sqrt{1 - \rho^2}Z_2 + \mu_X  \\
+  \end{aligned}
+\end{equation}
+
+Since $Z_1$ and $Z_2$ are independent, given $Y=y$, we can see $X$ is a linear function of $Z_2$, thus:
+
+\begin{equation}
+  \begin{aligned}
+    \mathds{E}[X \Big| Y=y] =& \mathds{E} \Big[ {\sigma_X \rho \frac{y - \mu_Y}{\sigma_Y} + \sigma_X \sqrt{1 - \rho^2}Z_2 + \mu_X} \Big| Y=y \Big]  \\
+                      =& \mathds{E} \Big[ \sigma_X \rho \frac{y - \mu_Y}{\sigma_Y} \Big| Y=y \Big] + \mathds{E} \Big[ \sigma_X \sqrt{1 - \rho^2}Z_2 \Big| Y=y \Big] + \mathds{E} [\mu_X \Big| Y=y ]  \\
+                      =& \sigma_X \rho \frac{y - \mu_Y}{\sigma_Y} + \sigma_X \sqrt{1 - \rho^2} \mathds{E}[Z_2] + \mu_X  \\
+                      =& \sigma_X \rho \frac{y - \mu_Y}{\sigma_Y} + \sigma_X \sqrt{1 - \rho^2} * 0 + \mu_X  \\
+                      =& \sigma_X \sigma_Y \rho \frac{y - \mu_Y}{\sigma_Y^2} + \mu_X  \\
+                      =& \frac{Cov(X,Y)(y - \mu_Y)}{Var[Y]} + \mathds{E}[X]  \\
+                      =& \mathds{E}[X] + \frac{Cov(X,Y)(y - \mathds{E}[Y])}{Var[Y]}  \\
+                      =& \mathds{E}[X] + \frac{Cov(X,Y)}{Var[Y]}(y - \mathds{E}[Y])  \quad \text{(Q.E.D)}  \\
+  \end{aligned}
+\end{equation}
+  
+In addition:  
+
+\begin{equation}
+  \begin{aligned}
+    Var[X \Big| Y = y] =& Var \Big[ \sigma_X \rho \frac{y - \mu_Y}{\sigma_Y} + \sigma_X \sqrt{1 - \rho^2}Z_2 + \mu_X \Big| Y=y \Big]  \\
+                       =& Var \Big[ \sigma_X \rho \frac{y - \mu_Y}{\sigma_Y} \Big| Y=y \Big ] + Var \Big[ \sigma_X \sqrt{1 - \rho^2}Z_2 \Big| Y=y \Big] + Var \Big[ \mu_X \Big| Y=y \Big]  \\
+                       =& 0 + \sigma_X^2(1 - \rho^2) Var[Z_2] + 0  \\
+                       =& \sigma_X^2(1 - \rho^2) * 1  \\
+                       =& (1 - \rho^2)Var[X]  \quad \text{(Q.E.D)}  \\
+  \end{aligned}
+\end{equation}
+  
+  
+# **Question 3**    
+
