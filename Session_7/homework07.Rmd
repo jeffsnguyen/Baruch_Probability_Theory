@@ -3,9 +3,9 @@ title: "Homework 7"
 author: "Jeff Nguyen"
 date: "09/12/2020"
 output:
-  html_document: default
   pdf_document:
     extra_dependencies: ["dsfont"]
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -214,3 +214,165 @@ P_0 <- 4 * (exp(18) * (erf(8*sqrt(2)/3) + 1) - 1)
 ```
 
 Thus, $P_0 = 4 \Big( e^{18} \Big[ erf\Big( \frac{8\sqrt{2}}{3} \Big) + 1 \Big] - 1 \Big) \approx `r P_0`$.
+  
+# **Question 5**  
+
+We have the expected payoff at time T given as follow:  
+
+\begin{equation}
+  \begin{aligned}
+    g(S(T)) =& (max \, \{ S(T) - K, 0\})^2  \\
+    \text{in other words:}&  \\
+    \varphi(S(T)) =& (\{ S(T) - K \}^+)^2  \\
+  \end{aligned}
+\end{equation}
+  
+Recall:  
+  
+\begin{equation}
+  \begin{aligned}
+    C_0 =& e^{-rt} \mathds{E}_* \Big[ Payoff \Big]  \\
+        =& e^{-rt} \mathds{E}_* \Big[ \varphi(S(T)) \Big]  \\
+        =& e^{-rt} \mathds{E}_* \Big[ (\{ S(T) - K \}^+)^2 \Big]  \\
+        =& e^{-rt} \mathds{E}_* \Big[ (\{ S_0e^{\mu t + \sigma B_t} - K \}^+)^2 \Big] \quad 
+           \text{(given} \quad S(t) = S_0e^{\mu t + \sigma B_t}\text{)}  \\
+        =& e^{-rt} \mathds{E}_* \Big[ (\{ S_0e^{\big(r - \frac{\sigma^2}{2}\big)t + \sigma \sqrt{t} Z} - K \}^+)^2 \Big] \quad 
+           \text{(with} \, Z \sim N(0,1) \text{)} \\
+        =& \frac{e^{-rt}}{\sqrt{2\pi}} 
+           \int_{-\infty}^{\infty} 
+           \Big[ 
+            \Big( 
+              S_0e^{\big(r - \frac{\sigma^2}{2}\big)t + \sigma \sqrt{t} z} - K 
+            \Big)^+
+           \Big]^2 * 
+           e^{-\frac{z^2}{2}}dz  \\
+        =& \frac{e^{-rt}}{\sqrt{2\pi}} 
+           \int_{S_0e^{\big(r - \frac{\sigma^2}{2}\big)t + \sigma \sqrt{t} z} > K} 
+           \Big[ 
+            S_0e^{\big(r - \frac{\sigma^2}{2}\big)t + \sigma \sqrt{t} z} - K 
+           \Big]^2 * 
+           e^{-\frac{z^2}{2}}dz \\
+        =& \frac{e^{-rt}}{\sqrt{2\pi}} 
+           \int_{\frac{ln \frac{K}{S_0} - \big( r - \frac{\sigma^2}{2}\big)t}{\sigma \sqrt{t}}}^{+\infty} 
+           \Big[ 
+            S_0e^{\big(r - \frac{\sigma^2}{2}\big)t + \sigma \sqrt{t} Z} - K 
+           \Big]^2 * 
+           e^{-\frac{z^2}{2}}dz  \\
+        =& \frac{e^{-rt}}{\sqrt{2\pi}} 
+           \int_{\frac{ln \frac{K}{S_0} - \big( r - \frac{\sigma^2}{2}\big)t}{\sigma \sqrt{t}}}^{+\infty} 
+           \Big( 
+            S_0^2e^{2 * \Big[ \big(r - \frac{\sigma^2}{2}\big)t + \sigma \sqrt{t} z \Big]} - 
+            2* S_0e^{\big(r - \frac{\sigma^2}{2}\big)t + \sigma \sqrt{t} Z} * K + 
+            K^2
+           \Big) * 
+           e^{-\frac{z^2}{2}}dz  \\
+      &\text{Recall:} \quad d_- = \frac{{ln\frac{S_0}{K}} + {\Big( r - \frac{\sigma^2}{2} \Big)}t}{\sigma \sqrt{t}}  
+      \Rightarrow \frac{ln \frac{K}{S_0} - \big( r - \frac{\sigma^2}{2}\big)t}{\sigma \sqrt{t}} = -d_-  \\
+      &\text{Simplify:}  \\
+    C_0 =& \frac{e^{-rt}}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           S_0^2e^{2 \Big[ \big(r - \frac{\sigma^2}{2}\big)t + \sigma \sqrt{t} z \Big]} e^{-\frac{z^2}{2}}dz  - 
+           \frac{e^{-rt}}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           2S_0e^{\big(r - \frac{\sigma^2}{2}\big)t + \sigma \sqrt{t} z} Ke^{-\frac{z^2}{2}}dz + 
+           \frac{e^{-rt}}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           K^2e^{-\frac{z^2}{2}}dz  \\
+        =& \frac{e^{rt}S_0^2}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           e^{-\sigma^2 t + 2\sigma \sqrt{t} z} * e^{-\frac{z^2}{2}}dz - 
+           \frac{2S_0K}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           e^{-\frac{\sigma^2}{2}t + \sigma \sqrt{t} z} * e^{-\frac{z^2}{2}}dz +
+           \frac{e^{-rt}K^2}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           e^{-\frac{z^2}{2}}dz  \\
+    &\text{Further recall:} \Phi(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-\frac{z^2}{2}} dz  \\
+    &\text{Thus:}  \\
+    C_0 =& \frac{e^{rt}S_0^2}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           e^{-\sigma^2 t + 2\sigma \sqrt{t} z} * e^{-\frac{z^2}{2}}dz  - 
+           \frac{2S_0K}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           e^{-\frac{\sigma^2}{2}t + \sigma \sqrt{t} z} * e^{-\frac{z^2}{2}}dz + 
+           \frac{K^2e^{-rt}}{\sqrt{2\pi}} \int_{-\infty}^{d_-} e^{-\frac{z^2}{2}}dz \\
+        =& \frac{e^{rt}S_0^2}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           e^{-\sigma^2 t + 2\sigma \sqrt{t} z} * e^{-\frac{z^2}{2}}dz - 
+           \frac{2S_0K}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           e^{-\frac{\sigma^2}{2}t + \sigma \sqrt{t} z} * e^{-\frac{z^2}{2}}dz  + 
+           K^2e^{-rt}\Phi(d_-)  \\
+        =& \frac{e^{rt}S_0^2}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           e^{-\sigma^2 t + 2\sigma \sqrt{t} z -\frac{z^2}{2}} dz - 
+           \frac{2S_0K}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           e^{-\frac{\sigma^2}{2}t + \sigma \sqrt{t} z -\frac{z^2}{2}} dz + 
+           K^2e^{-rt}\Phi(d_-)  \\
+        =& \frac{e^{rt}S_0^2}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           e^{-\frac{1}{2}(z^2 - 4z\sigma\sqrt{t} + 4\sigma^2t) + \sigma^2t} dz - 
+           \frac{2S_0K}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty}  
+           e^{-\frac{1}{2}(z^2 - 2z\sigma\sqrt{t} + \sigma^2t)} dz + 
+           K^2e^{-rt}\Phi(d_-)  \\
+        =& \frac{e^{rt}S_0^2}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty} e^{-\frac{1}{2}(z - 2\sigma\sqrt{t})^2 + \sigma^2t} dz - 
+           \frac{2S_0K}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty} e^{-\frac{1}{2}(z - \sigma\sqrt{t})^2} dz + 
+           K^2e^{-rt}\Phi(d_-)  \\
+  \end{aligned}
+\end{equation}
+  
+Transform variables  
+
+\begin{equation}
+  \begin{aligned}
+    &\left\{
+      \begin{matrix}
+        x = z - 2\sigma\sqrt{t}  \\
+        y = z - \sigma\sqrt{t}  \\
+      \end{matrix}
+    \right.  \\
+    \Rightarrow
+    &\left\{
+      \begin{matrix}
+        dx = dz  \\
+        dy = dz  \\
+      \end{matrix}
+    \right.  \\
+    \Rightarrow
+    &\left\{
+      \begin{matrix}
+        z = -d_- \quad \Rightarrow x = -d_- - 2\sigma\sqrt{t}  \\
+        z = -d_- \quad \Rightarrow y = -d_- - \sigma\sqrt{t}  \\
+      \end{matrix}
+    \right.  \\
+  \end{aligned}
+\end{equation}
+
+Thus,  
+
+\begin{equation}
+  \begin{aligned}
+    C_0 =& \frac{e^{rt}S_0^2}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty} e^{-\frac{1}{2}(z - 2\sigma\sqrt{t})^2 + \sigma^2t} dz - 
+           \frac{2S_0K}{\sqrt{2\pi}} 
+           \int_{-d_-}^{+\infty} e^{-\frac{1}{2}(z - \sigma\sqrt{t})^2} dz + 
+           K^2e^{-rt}\Phi(d_-)  \\
+        =& \frac{e^{rt + \sigma^2t}S_0^2}{\sqrt{2\pi}} 
+           \int_{-d_- - 2\sigma\sqrt{t}}^{+\infty} e^{-\frac{x^2}{2}} dx - 
+           \frac{2S_0K}{\sqrt{2\pi}} 
+           \int_{-d_- - \sigma\sqrt{t}}^{+\infty} e^{-\frac{y^2}{2}} dy + 
+           K^2e^{-rt}\Phi(d_-)  \\
+        =& \frac{e^{rt + \sigma^2t}S_0^2}{\sqrt{2\pi}} 
+           \int_{-\infty}^{d_- + 2\sigma\sqrt{t}} e^{-\frac{x^2}{2}} dx - 
+           \frac{2S_0K}{\sqrt{2\pi}} 
+           \int_{-\infty}^{d_- + \sigma\sqrt{t}} e^{-\frac{y^2}{2}} dy + 
+           K^2e^{-rt}\Phi(d_-)  \\
+        =& e^{(r + \sigma^2)t}S_0^2 \Phi(d_- + 2\sigma\sqrt{t}) - 2S_0K \Phi(d_+) + K^2e^{-rt}\Phi(d_-)  \\
+  \end{aligned}
+\end{equation}
+  
+In conlusion: $C_0 = S_0^2e^{(r + \sigma^2)t} \Phi(d_- + 2\sigma\sqrt{t}) - 2S_0K \Phi(d_+) + K^2e^{-rt}\Phi(d_-)$
