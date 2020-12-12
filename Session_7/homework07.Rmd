@@ -398,22 +398,28 @@ Transform variables
   \begin{aligned}
     &\left\{
       \begin{matrix}
-        x = z - 2\sigma\sqrt{t}  \\
-        y = z - \sigma\sqrt{t}  \\
+        \begin{aligned}
+          &x = z - 2\sigma\sqrt{t}  \\
+          &y = z - \sigma\sqrt{t}  \\
+        \end{aligned}
       \end{matrix}
     \right.  \\
     \Rightarrow
     &\left\{
       \begin{matrix}
-        dx = dz  \\
-        dy = dz  \\
+        \begin{aligned}
+          &dx = dz  \\
+          &dy = dz  \\
+        \end{aligned}
       \end{matrix}
     \right.  \\
-    \Rightarrow
+    \text{In addition:}  \\
     &\left\{
       \begin{matrix}
-        z = -d_- \quad \Rightarrow x = -d_- - 2\sigma\sqrt{t}  \\
-        z = -d_- \quad \Rightarrow y = -d_- - \sigma\sqrt{t}  \\
+        \begin{aligned}
+          &z = -d_- \quad \Rightarrow x = -d_- - 2\sigma\sqrt{t}  \\
+          &z = -d_- \quad \Rightarrow y = -d_- - \sigma\sqrt{t}  \\
+        \end{aligned}
       \end{matrix}
     \right.  \\
   \end{aligned}
